@@ -13,6 +13,6 @@ const PROJECT_INFO = {
   }
 };
 
-const BASE_ROUTE_PATH = "smc"
+const BASE_ROUTE_PATH = "smc";
 
 export { PROJECT_INFO, BASE_ROUTE_PATH };
