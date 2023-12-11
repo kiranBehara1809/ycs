@@ -12,11 +12,14 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
-import { addBaseUrl } from "../common/functions/function";
+import { addBaseUrl, showBasicToast } from "../common/functions/function";
+import Swal from "sweetalert2";
+
 
 export default function Login() {
+  const theme = useTheme()
   const navigate = useNavigate();
   useEffect(() => {
     // getApodImageOfTheDay();
@@ -45,6 +48,8 @@ export default function Login() {
         setShowBackdrop(false);
         navigate(addBaseUrl("home"));
       }, 2000);
+    }else{
+      showBasicToast('error', 'Incorrect credentials')
     }
   };
 
