@@ -10,7 +10,18 @@ const showBasicToast = (icon, text) => {
     icon: icon,
     text: text,
     showConfirmButton: true,
+    footer : "Developed by Kiran Behara"
   });
-}
+};
 
-export { addBaseUrl, showBasicToast };
+const showConfirmToast = (icon, text) => {
+  return Swal.fire({
+    icon: icon,
+    text: text,
+    showConfirmButton: true,
+    showCancelButton: true,
+    footer: "Developed by Kiran Behara",
+  });
+};
+
+export { addBaseUrl, showBasicToast, showConfirmToast };

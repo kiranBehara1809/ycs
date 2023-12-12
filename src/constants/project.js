@@ -15,4 +15,6 @@ const PROJECT_INFO = {
 
 const BASE_ROUTE_PATH = "smc";
 
-export { PROJECT_INFO, BASE_ROUTE_PATH };
+const API_ENDPOINT = "http://localhost:8888"
+
+export { PROJECT_INFO, BASE_ROUTE_PATH, API_ENDPOINT };

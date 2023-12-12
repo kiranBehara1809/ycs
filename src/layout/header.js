@@ -14,7 +14,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { ACCOUNT_POPOVER_LIST } from "../db/header/accountPopoverDb";
 import { useNavigate } from "react-router";
-import { addBaseUrl } from "../common/functions/function";
+import { addBaseUrl, showConfirmToast } from "../common/functions/function";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -32,7 +32,13 @@ const Header = () => {
   };
   const handleAccountPopverOption = (option) => {
     if (option.url === "/login") {
-      navigate(option.url);
+      showConfirmToast('warning', 'Do you want to logout?').then(res => {
+        if(res.isConfirmed){
+          navigate(option.url);
+        }else{
+          handleClose();
+        }
+      })
     } else {
       navigate(addBaseUrl(option.url));
     }

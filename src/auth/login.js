@@ -16,10 +16,10 @@ import { Backdrop, CircularProgress, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import { addBaseUrl, showBasicToast } from "../common/functions/function";
 import Swal from "sweetalert2";
-
+import { handleLogin } from "../http/authRequests";
 
 export default function Login() {
-  const theme = useTheme()
+  const theme = useTheme();
   const navigate = useNavigate();
   useEffect(() => {
     // getApodImageOfTheDay();
@@ -37,20 +37,19 @@ export default function Login() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    setShowBackdrop(true);
     const data = new FormData(event.currentTarget);
-    if (data.get("email") === "admin" && data.get("password") === "admin") {
-      console.log({
-        email: data.get("email"),
-        password: data.get("password"),
-      });
-      setShowBackdrop(true);
-      setTimeout(() => {
+    handleLogin(data.get("userName")).then((res) => {
+      if (res.statusCode === 200) {
+        showBasicToast("success", res.msg);
         setShowBackdrop(false);
         navigate(addBaseUrl("home"));
-      }, 2000);
-    }else{
-      showBasicToast('error', 'Incorrect credentials')
-    }
+      } else {
+        setShowBackdrop(false);
+        showBasicToast("error", res.msg);
+        return;
+      }
+    });
   };
 
   return (
@@ -108,9 +107,9 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
+              id="userName"
+              label="User Name"
+              name="userName"
               autoComplete="off"
               autoFocus
             />
