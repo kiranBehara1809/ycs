@@ -1,6 +1,7 @@
 {
   "name": "management",
   "version": "0.1.0",
+  "homepage": "https://kiranbehara1809.github.io/fantastic-lamp/",
   "private": true,
   "dependencies": {
     "@emotion/cache": "^11.9.3",
@@ -19,6 +20,7 @@
     "axios": "^1.6.2",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.16",
+    "gh-pages": "^6.1.0",
     "material-ui-popup-state": "^4.0.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -38,6 +40,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
