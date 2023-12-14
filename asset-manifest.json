@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/fantastic-lamp/static/css/main.9598b94b.css",
-    "main.js": "/fantastic-lamp/static/js/main.855675c3.js",
+    "main.js": "/fantastic-lamp/static/js/main.d104ccea.js",
     "static/js/787.e99a3353.chunk.js": "/fantastic-lamp/static/js/787.e99a3353.chunk.js",
     "static/media/404.png": "/fantastic-lamp/static/media/404.19a01faaddcba524a829.png",
     "static/media/logo.svg": "/fantastic-lamp/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/fantastic-lamp/index.html",
     "main.9598b94b.css.map": "/fantastic-lamp/static/css/main.9598b94b.css.map",
-    "main.855675c3.js.map": "/fantastic-lamp/static/js/main.855675c3.js.map",
+    "main.d104ccea.js.map": "/fantastic-lamp/static/js/main.d104ccea.js.map",
     "787.e99a3353.chunk.js.map": "/fantastic-lamp/static/js/787.e99a3353.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9598b94b.css",
-    "static/js/main.855675c3.js"
+    "static/js/main.d104ccea.js"
   ]
 }
