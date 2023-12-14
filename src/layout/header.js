@@ -81,9 +81,9 @@ const Header = () => {
         }}
       >
         <List>
-          {ACCOUNT_POPOVER_LIST.map((x) => {
+          {ACCOUNT_POPOVER_LIST.map((x, index) => {
             return (
-              <ListItem disablePadding>
+              <ListItem disablePadding key={index}>
                 <ListItemButton onClick={() => handleAccountPopverOption(x)}>
                   <ListItemIcon disablePadding sx={{ minWidth: "30px" }}>
                     {x.icon}

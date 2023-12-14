@@ -22,6 +22,7 @@ import { Outlet, useNavigate } from "react-router";
 import { SIDE_NAV_ITEMS } from "../db/sideNavItems";
 import Header from "./header";
 import { addBaseUrl } from "../common/functions/function";
+import { Tooltip } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -107,12 +108,13 @@ export default function SideNav() {
 
   const handleSideNavOptionClick = (option) => {
     navigate(addBaseUrl(option.url));
+    handleDrawerClose();
   };
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} >
+      <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -163,7 +165,7 @@ export default function SideNav() {
                       justifyContent: "center",
                     }}
                   >
-                    {option.icon}
+                    <Tooltip arrow placement="right" title={option.tooltip}>{option.icon}</Tooltip>
                   </ListItemIcon>
                   <ListItemText
                     primary={option.name}
