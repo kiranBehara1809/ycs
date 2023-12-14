@@ -20,7 +20,7 @@ function App() {
     <>
       <ThemeProvider theme={blueTheme}>
         <CssBaseline />
-        <BrowserRouter>
+        <BrowserRouter basename="/fantastic-lamp">
           <HelmetProvider>
             <Routings />
           </HelmetProvider>
