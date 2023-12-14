@@ -1,29 +1,27 @@
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import HomeIcon from "@mui/icons-material/Home";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+
+import { ADMIN_PANEL_ICON, HOME_ICON, SETTINGS_ICON } from "../constants/icons";
 
 const SIDE_NAV_ITEMS = [
   {
     name: "Home",
     url: "home",
     openInNewTab: false,
-    icon: <HomeIcon sx={{ color: "primary.main" }} />,
+    icon: HOME_ICON,
+    tooltip : "Home"
   },
   {
-    name: "Register New Patient",
-    url: "registerNewPatient",
+    name: "Masters",
+    url: "masters",
     openInNewTab: false,
-    icon: <PersonAddIcon sx={{ color: "primary.main" }} />,
+    icon: ADMIN_PANEL_ICON,
+    tooltip : "Masters"
   },
-];
-
-const SIDE_NAV_ITEMS_ADMIN = [
   {
-    name: "Admin",
-    url: "admin",
+    name: "Settings",
+    url: "settings",
     openInNewTab: false,
-    icon: <AdminPanelSettingsIcon sx={{ color: "primary.main" }} />,
+    icon: SETTINGS_ICON,
+    tooltip : "Settings"
   },
 ];
 

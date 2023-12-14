@@ -14,9 +14,10 @@ import Container from "@mui/material/Container";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { Backdrop, CircularProgress, useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
-import { addBaseUrl, showBasicToast } from "../common/functions/function";
-import Swal from "sweetalert2";
-import { handleLogin } from "../http/authRequests";
+import { addBaseUrl, showBasicToast } from "../../common/functions/function";
+import { handleLogin } from "../../http/authRequests";
+import { API_FAILURE_MSG } from "../../constants/errorText";
+
 
 export default function Login() {
   const theme = useTheme();
@@ -26,27 +27,19 @@ export default function Login() {
   }, []);
   const [apodHdUrl, setApodHdUrl] = useState(null);
   const [showBackdrop, setShowBackdrop] = useState(false);
-  const getApodImageOfTheDay = async () => {
-    await fetch(
-      "https://api.nasa.gov/planetary/apod?api_key=ddwSeGZFQ2cgMpU17PhgqeDQsZeK58SEc7xD3viP"
-    ).then((res) =>
-      res.json().then((res) => {
-        setApodHdUrl(res?.hdurl);
-      })
-    );
-  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowBackdrop(true);
     const data = new FormData(event.currentTarget);
     handleLogin(data.get("userName")).then((res) => {
-      if (res.statusCode === 200) {
+      if (res?.statusCode === 200) {
         showBasicToast("success", res.msg);
         setShowBackdrop(false);
         navigate(addBaseUrl("home"));
       } else {
         setShowBackdrop(false);
-        showBasicToast("error", res.msg);
+        showBasicToast("error", res?.msg || API_FAILURE_MSG);
         return;
       }
     });
