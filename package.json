@@ -1,7 +1,7 @@
 {
   "name": "management",
   "version": "0.1.0",
-  "homepage": "https://kiranbehara1809.github.io/fantastic-lamp",
+  "homepage": "https://kiranbehara1809.github.io/fantastic-lamp/",
   "private": true,
   "dependencies": {
     "@emotion/cache": "^11.9.3",
