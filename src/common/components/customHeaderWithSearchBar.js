@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
@@ -24,6 +24,7 @@ export default function CustomHeaderWithSearchBar(props) {
 
   return (
     <Paper
+      key={props.headerText}
       sx={{
         p: "0 10px",
         mb: 1.7,
@@ -32,23 +33,25 @@ export default function CustomHeaderWithSearchBar(props) {
         justifyContent: "space-between",
       }}
     >
-      {props.headerIcon}
-      <Typography variant="h6" sx={{pl:1}}>{props.headerText}</Typography>
+      {props?.headerIcon || null}
+      <Typography variant="h6" sx={{ pl: 1 }}>
+        {props?.headerText || ""}
+      </Typography>
       <Box sx={{ flex: 1 }}></Box>
       <Divider sx={{ height: 30, m: 0.5 }} orientation="vertical" />
       <InputBase
         onChange={(event) => handleInputChange(event)}
-        sx={{ ml: 1, width: "250px" }}
+        sx={{ ml: 1, width: props?.seachBarWidth || "200px" }}
         autoFocus
-        placeholder={props.placeholder}
+        placeholder={props?.placeholder}
         inputProps={{
-          "aria-label": props.placeholder,
-          width: "250px !important",
+          "aria-label": props?.placeholder,
         }}
       />
       <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
         <SearchIcon />
       </IconButton>
+      {props?.btnHtml || null}
     </Paper>
   );
 }

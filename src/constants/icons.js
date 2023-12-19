@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 import { BiMaleFemale } from "react-icons/bi";
 import { IoMdFemale, IoMdMale } from "react-icons/io";
 import { FaHandshake } from "react-icons/fa";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 
 const SETTINGS_ICON = (
@@ -26,6 +27,9 @@ const BLOOD_GROUP_ICON = (
 const GENDER_ICON = <IoMdFemale className="reactIconsColor" />;
 const MARITAL_STATUS_ICON = <BiMaleFemale className="reactIconsColor" />;
 const SALUTATION_ICON = <FaHandshake className="reactIconsColor" />;
+const CLOSE_ICON = (
+  <CancelIcon fontSize="medium" sx={{ color: "error.main" }} />
+);
 
 export {
   SETTINGS_ICON,
@@ -35,4 +39,5 @@ export {
   GENDER_ICON,
   MARITAL_STATUS_ICON,
   SALUTATION_ICON,
+  CLOSE_ICON,
 };

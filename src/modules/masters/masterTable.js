@@ -23,12 +23,14 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import EditIcon from "@mui/icons-material/Edit";
 import { visuallyHidden } from "@mui/utils";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import {
   convertCamelCaseToTitleText,
   convertColumnName,
 } from "../../common/functions/function";
-import { Button } from "@mui/material";
+import { Button, useTheme } from "@mui/material";
 import SearchResultsNotFound from "../../common/components/searchResultsNotFound";
+import CustomHeaderWithSearchBar from "../../common/components/customHeaderWithSearchBar";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -51,18 +53,19 @@ function getComparator(order, orderBy) {
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
 // with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
+  const stabilizedThis = array?.map((el, index) => [el, index]);
+  stabilizedThis?.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
       return order;
     }
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis?.map((el) => el[0]);
 }
 
 function EnhancedTableHead(props) {
+  const theme = useTheme();
   const {
     onSelectAllClick,
     order,
@@ -111,6 +114,7 @@ function EnhancedTableHead(props) {
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
+              sx={{ fontWeight: "bold" }}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -136,85 +140,178 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected, tableName, tableIcon } = props;
-
-  const handleAddBtnClick = (masterName) => {
-    props.handleAddClick(masterName);
+  const { numSelected, tableName, tableIcon, masterObject } = props;
+  const handleAddBtnClick = () => {
+    props.handleAddClick(masterObject);
   };
 
   return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        height: "40px !important",
-        borderRadius: "3px",
-        minHeight: "30px !important",
-        padding: "5px 5px",
-        boxShadow:
-          "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(
-              theme.palette.primary.main,
-              theme.palette.action.activatedOpacity
-            ),
-        }),
-      }}
-    >
-      <Typography
-        sx={{ flex: "1 1 100%", display: "flex", alignItems: "center" }}
-        variant="h6"
-        id="tableTitle"
-        component="div"
-      >
-        {tableIcon} &nbsp; {tableName}
-      </Typography>
+    // <Toolbar
+    //   sx={{
+    //     pl: { sm: 2 },
+    //     pr: { xs: 1, sm: 1 },
+    //     height: "40px !important",
+    //     borderRadius: "3px",
+    //     minHeight: "30px !important",
+    //     padding: "5px 5px",
+    //     boxShadow:
+    //       "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
+    //     ...(numSelected > 0 && {
+    //       bgcolor: (theme) =>
+    //         alpha(
+    //           theme.palette.primary.main,
+    //           theme.palette.action.activatedOpacity
+    //         ),
+    //     }),
+    //   }}
+    // >
+    //   <Typography
+    //     sx={{ flex: "1 1 100%", display: "flex", alignItems: "center" }}
+    //     variant="h6"
+    //     id="tableTitle"
+    //     component="div"
+    //   >
+    //     {tableIcon} &nbsp; {tableName}
+    //   </Typography>
 
-      {numSelected > 0 ? (
+    //   {numSelected > 0 ? (
+    //     <>
+    //       <Typography
+    //         sx={{ flex: "1 1 100%" }}
+    //         color="inherit"
+    //         variant="subtitle1"
+    //         component="div"
+    //       >
+    //         {numSelected} selected
+    //       </Typography>
+    //       {numSelected === 1 ? (
+    //         <Tooltip arrow title="Edit">
+    //           <IconButton>
+    //             <EditIcon />
+    //           </IconButton>
+    //         </Tooltip>
+    //       ) : null}
+    //       <Tooltip arrow title="Delete">
+    //         <IconButton>
+    //           <DeleteIcon />
+    //         </IconButton>
+    //       </Tooltip>
+    //     </>
+    //   ) : (
+    //     <>
+    //       {masterObject.hideAddBtn ? null : (
+    //         <Tooltip arrow title={`Add ${tableName}`}>
+    //           <Button
+    //             onClick={() => handleAddBtnClick()}
+    //             variant="contained"
+    //             size="small"
+    //             sx={{ pl: 2, pr: 2, textTransform: "capitalize" }}
+    //             startIcon={<AddBoxIcon />}
+    //           >
+    //             Add
+    //           </Button>
+    //         </Tooltip>
+    //       )}
+
+    //       <Tooltip arrow title="Filter list">
+    //         <IconButton>
+    //           <FilterListIcon />
+    //         </IconButton>
+    //       </Tooltip>
+    //     </>
+    //   )}
+    // </Toolbar>
+    <CustomHeaderWithSearchBar
+      key={tableName}
+      headerIcon={tableIcon}
+      headerText={tableName}
+      placeholder={`Search ${tableName}`}
+      seachBarWidth={"150px"}
+      searchedInput={(val) => props.sendSearchValTopParent(val)}
+      btnHtml={
         <>
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            color="inherit"
-            variant="subtitle1"
-            component="div"
-          >
-            {numSelected} selected
-          </Typography>
+          {masterObject.hideAddBtn ? null : (
+            <>
+              <Tooltip arrow title={`Add ${tableName}`}>
+                <Button
+                  onClick={() => handleAddBtnClick()}
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    pl: 2,
+                    pr: 2,
+                    ml: 0.5,
+                    mr: 0.5,
+                    textTransform: "capitalize",
+                  }}
+                  startIcon={<AddBoxIcon />}
+                >
+                  Add
+                </Button>
+              </Tooltip>
+            </>
+          )}
           {numSelected === 1 ? (
-            <Tooltip arrow title="Edit">
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+            <>
+              <Tooltip arrow title={`View`}>
+                <Button
+                  onClick={() => props.handleViewClick(masterObject, "view")}
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    pl: 2,
+                    pr: 2,
+                    ml: 0.5,
+                    mr: 0.5,
+                    textTransform: "capitalize",
+                  }}
+                  startIcon={<RemoveRedEyeIcon />}
+                >
+                  View
+                </Button>
+              </Tooltip>
+              <Tooltip arrow title={`Edit`}>
+                <Button
+                  onClick={() => props.handleEditClick(masterObject, "edit")}
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    pl: 2,
+                    pr: 2,
+                    ml: 0.5,
+                    mr: 0.5,
+                    textTransform: "capitalize",
+                  }}
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
+              </Tooltip>
+            </>
+          ) : null}
+          {numSelected >= 1 ? (
+            <Tooltip arrow title={`Delete ${numSelected} records`}>
+              <Button
+                onClick={() => props.handleDeleteClick(masterObject, "delete")}
+                variant="contained"
+                size="small"
+                color="error"
+                sx={{
+                  pl: 2,
+                  pr: 2,
+                  ml: 0.5,
+                  mr: 0.5,
+                  textTransform: "capitalize",
+                }}
+                startIcon={<DeleteIcon />}
+              >
+                Delete ({numSelected})
+              </Button>
             </Tooltip>
           ) : null}
-          <Tooltip arrow title="Delete">
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
         </>
-      ) : (
-        <>
-          <Tooltip arrow title={`Add ${tableName}`}>
-            <Button
-              onClick={() => handleAddBtnClick(tableName)}
-              variant="contained"
-              size="small"
-              sx={{ pl: 2, pr: 2, textTransform: "capitalize" }}
-              startIcon={<AddBoxIcon />}
-            >
-              Add
-            </Button>
-          </Tooltip>
-          <Tooltip arrow title="Filter list">
-            <IconButton>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        </>
-      )}
-    </Toolbar>
+      }
+    />
   );
 }
 
@@ -228,8 +325,9 @@ export default function EnhancedTable(props) {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rerenderTable, setRerenderTable] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -241,9 +339,15 @@ export default function EnhancedTable(props) {
     setRerenderTable((prev) => !prev);
   }, [props.tableData]);
 
+  useEffect(() => {
+    setSelectedRows(
+      selected.map((x) => props.tableData.find((y) => y._id === x))
+    );
+  }, [selected]);
+
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = props.tableData?.map((n) => n.id);
+      const newSelected = props.tableData?.map((n) => n._id);
       setSelected(newSelected);
       return;
     }
@@ -292,7 +396,7 @@ export default function EnhancedTable(props) {
 
   const visibleRows = React.useMemo(
     () =>
-      stableSort(props.tableData, getComparator(order, orderBy)).slice(
+      stableSort(props.tableData, getComparator(order, orderBy))?.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
@@ -300,13 +404,24 @@ export default function EnhancedTable(props) {
   );
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} key={props.tableName}>
       <Paper sx={{ width: "100%", mb: 1 }}>
         <EnhancedTableToolbar
           numSelected={selected.length}
+          masterObject={props.masterObject}
           tableName={props.tableName}
           tableIcon={props.tableIcon}
           handleAddClick={(masterName) => props.handleAddClick(masterName)}
+          handleEditClick={(masterName) =>
+            props.handleEditClick(masterName, selectedRows)
+          }
+          handleViewClick={(masterName) =>
+            props.handleViewClick(masterName, selectedRows)
+          }
+          handleDeleteClick={(masterName) =>
+            props.handleDeleteClick(masterName, selectedRows)
+          }
+          sendSearchValTopParent={(val) => props.filterTable(val)}
         />
         {props.tableData?.length > 0 ? (
           <>
@@ -315,6 +430,7 @@ export default function EnhancedTable(props) {
                 aria-labelledby="tableTitle"
                 size={dense ? "small" : "medium"}
               >
+                <caption>{selected.length} Selected</caption>
                 <EnhancedTableHead
                   numSelected={selected.length}
                   order={order}
@@ -326,17 +442,17 @@ export default function EnhancedTable(props) {
                 />
                 <TableBody>
                   {visibleRows?.map((row, index) => {
-                    const isItemSelected = isSelected(row.id);
+                    const isItemSelected = isSelected(row._id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
                         hover
-                        onClick={(event) => handleClick(event, row.id)}
+                        onClick={(event) => handleClick(event, row._id)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={row.id}
+                        key={index}
                         selected={isItemSelected}
                         sx={{ cursor: "pointer" }}
                       >
@@ -372,7 +488,8 @@ export default function EnhancedTable(props) {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[5, 10]}
+              sx={{ marginTop: "-53px" }}
+              rowsPerPageOptions={[10]}
               component="div"
               count={props.tableData.length}
               rowsPerPage={rowsPerPage}

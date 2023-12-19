@@ -1,9 +1,3 @@
-import BloodtypeIcon from "@mui/icons-material/Bloodtype";
-import FemaleIcon from "@mui/icons-material/Female";
-import { Box } from "@mui/material";
-import { BiMaleFemale } from "react-icons/bi";
-import { IoMdFemale, IoMdMale } from "react-icons/io";
-import { FaHandshake } from "react-icons/fa";
 import { BLOOD_GROUP_ICON, GENDER_ICON, MARITAL_STATUS_ICON, SALUTATION_ICON } from "../constants/icons";
 
 
@@ -13,31 +7,43 @@ import { BLOOD_GROUP_ICON, GENDER_ICON, MARITAL_STATUS_ICON, SALUTATION_ICON } f
 const MASTER_MENU = [
   {
     name: "Blood Group",
-    url: "home",
+    url: null,
+    isDialog : true,
+    uniqueName : "BLOOD_GROUP",
     apiEndPoint: "/masters/bloodGroups",
     openInNewTab: false,
     icon: BLOOD_GROUP_ICON,
+    hideAddBtn : true
   },
   {
     name: "Gender",
-    url: "home",
+    url: null,
+    isDialog : true,
+    uniqueName : "GENDER",
     apiEndPoint: "/masters/gender",
     openInNewTab: false,
     icon: GENDER_ICON,
+    hideAddBtn : false
   },
   {
     name: "Marital Status",
-    url: "home",
+    url: null,
+    isDialog : true,
+    uniqueName : "MARITAL_STATUS",
     apiEndPoint: "/masters/maritalStatus",
     openInNewTab: false,
     icon: MARITAL_STATUS_ICON,
+    hideAddBtn : false
   },
   {
     name: "Salutation",
-    url: "home",
+    url: null,
+    isDialog : true,
+    uniqueName : "SALUTATION",
     apiEndPoint: "/masters/salutation",
     openInNewTab: false,
     icon: SALUTATION_ICON,
+    hideAddBtn : false
   },
 ];
 

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import image from "../../assets/404.png";
 
-const PageNotFound = () => {
+const PageNotFound = (props) => {
   return (
     <>
       <Box
@@ -10,10 +10,10 @@ const PageNotFound = () => {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-          height: "80vh",
+          height: props?.boxHeight || "80vh",
         }}
       >
-        <img src={image} width={500} height={300} />
+        <img src={image} width={props?.width || 500} height={props?.height || 300} />
       </Box>
     </>
   );

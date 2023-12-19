@@ -4,8 +4,8 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Routings from "./routings";
 import { HelmetProvider } from "react-helmet-async";
-import greenTheme from "./themes/greenTheme";
 import { useEffect } from "react";
+import greenTheme from "./themes/greenTheme";
 import { blackTheme } from "./themes/blackTheme";
 import { blueTheme } from "./themes/bluetheme";
 import { greyTheme } from "./themes/greyTheme";
@@ -14,11 +14,11 @@ import { sunBurstOrange } from "./themes/sunburstOrange";
 function App() {
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty("--reacIconsColor", blueTheme.palette.primary.main);
+    root.style.setProperty("--reacIconsColor", greenTheme.palette.primary.main);
   }, []);
   return (
     <>
-      <ThemeProvider theme={blueTheme}>
+      <ThemeProvider theme={greenTheme}>
         <CssBaseline />
         <BrowserRouter basename="/">
           <HelmetProvider>

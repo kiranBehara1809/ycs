@@ -8,6 +8,7 @@ const getMasterDataByEndPoint = async (endPoint) => {
     return response.data;
   } catch (e) {
     console.log(`Error While calling ${endPoint} API ---> `, e);
+    return   {status : e.response.status, msg : e.message}
   }
 };
 

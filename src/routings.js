@@ -17,7 +17,7 @@ export default function Routings() {
       ),
     },
     {
-      path: "login",
+      path: "/login",
       element: (
         <>
           <Login />

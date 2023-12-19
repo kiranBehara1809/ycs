@@ -58,6 +58,28 @@ const getTableColumnNames = (data) => {
   return tempArr;
 };
 
+  const filterCustomTable = (attributes, rows, searchTerm) => {
+    let list = [];
+    if (rows?.length > 0) {
+      if(searchTerm?.length === 0){
+        list =  [...rows]
+        return
+      }
+      for (const current of rows) {
+        for (const attribute of attributes) {
+          if (attribute === "createdAt") {
+            continue;
+          }
+          const value = current[attribute];
+          if (value && value.toLowerCase().includes(searchTerm.toLowerCase())) {
+            list.push(current);
+          }
+        }
+      }
+    }
+    return list;
+  };
+
 export {
   addBaseUrl,
   showBasicToast,
@@ -65,4 +87,5 @@ export {
   convertCamelCaseToTitleText,
   convertColumnName,
   getTableColumnNames,
+  filterCustomTable,
 };
