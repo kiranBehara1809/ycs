@@ -16,6 +16,10 @@ export const blackTheme = createTheme({
     error: {
       main: "#da1111",
     },
+    background: {
+      default: "#FFFBF5",
+      paper: "#FFFBF5",
+    },
   },
   typography: {
     fontFamily: `${defaultGeneralSettings.fontFamily}`,

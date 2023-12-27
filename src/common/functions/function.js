@@ -1,16 +1,39 @@
 import Swal from "sweetalert2";
 import { BASE_ROUTE_PATH } from "../../constants/project";
+import { handleLogout } from "../../http/authRequests";
 
 const addBaseUrl = (url) => {
   return `/${BASE_ROUTE_PATH}/${url}`;
 };
 
 const showBasicToast = (icon, text) => {
+  if(text === "TVA"){
+    showTokenExpiredAndLogout()
+    return
+  }
   Swal.fire({
     icon: icon,
     text: text,
     showConfirmButton: true,
+    showConfirmButton: true,
+    allowOutsideClick: false,
     footer: "Developed by Kiran Behara",
+  });
+};
+
+const showTokenExpiredAndLogout = () => {
+   Swal.fire({
+    icon: "error",
+    allowEscapeKey : false,
+    text: "Token Expired, re-login to continue",
+    showConfirmButton: true,
+    allowOutsideClick : false,
+    footer: "Developed by Kiran Behara",
+  }).then(async (res) => {
+    if(res.isConfirmed){
+      await handleLogout();
+      window.location.href = `${window.location.origin}/login`;
+    }
   });
 };
 
@@ -20,6 +43,8 @@ const showConfirmToast = (icon, text) => {
     text: text,
     showConfirmButton: true,
     showCancelButton: true,
+    showConfirmButton: true,
+    allowOutsideClick: false,
     footer: "Developed by Kiran Behara",
   });
 };
@@ -42,9 +67,15 @@ const convertColumnName = (columnName, str) => {
       .getHours()
       .toString()
       .padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}`;
-  } else {
-    return str;
+  } 
+  if(typeof str === "boolean"){
+    if(str){
+      return "✅"
+    }else{
+      return "❌";
+    }
   }
+    return str;
 };
 
 const getTableColumnNames = (data) => {
@@ -66,18 +97,23 @@ const getTableColumnNames = (data) => {
         return
       }
       for (const current of rows) {
+        let value;
         for (const attribute of attributes) {
           if (attribute === "createdAt") {
             continue;
           }
-          const value = current[attribute];
+           value = current[attribute];
+           if( typeof value === "boolean" || typeof value === "object" || typeof value === "number" || typeof value === "undefined" || value?.length === 0){
+            continue;
+           }
+          // const value = current[attribute];
           if (value && value.toLowerCase().includes(searchTerm.toLowerCase())) {
             list.push(current);
           }
         }
       }
     }
-    return list;
+    return [...new Set(list)];
   };
 
 export {
@@ -88,4 +124,5 @@ export {
   convertColumnName,
   getTableColumnNames,
   filterCustomTable,
+  showTokenExpiredAndLogout,
 };

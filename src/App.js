@@ -14,11 +14,11 @@ import { sunBurstOrange } from "./themes/sunburstOrange";
 function App() {
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty("--reacIconsColor", greenTheme.palette.primary.main);
+    root.style.setProperty("--reacIconsColor", blueTheme.palette.primary.main);
   }, []);
   return (
     <>
-      <ThemeProvider theme={greenTheme}>
+      <ThemeProvider theme={blueTheme}>
         <CssBaseline />
         <BrowserRouter basename="/">
           <HelmetProvider>

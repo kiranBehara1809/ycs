@@ -2,9 +2,11 @@ import { Navigate, useRoutes } from "react-router-dom";
 import Home from "./layout/home";
 import { BASE_ROUTE_PATH } from "./constants/project";
 import PageNotFound from "./common/components/pageNotFound";
-import MasterHome from "./modules/masters/masterHome";
 import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
+import CommonMasterHome from "./modules/masters/commonMasterHome"
+import DoctorMasterHome from "./modules/masters/doctorMasterHome";
+import OpRegnScreen from "./modules/outPatient/opRegnScreen";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -34,7 +36,27 @@ export default function Routings() {
         },
         {
           path: "masters",
-          element: <MasterHome />,
+          children: [
+            {
+              path: "common",
+              index: true,
+              element: <CommonMasterHome />,
+            },
+            {
+              path: "doctor",
+              element: <DoctorMasterHome />,
+            },
+          ],
+        },
+        {
+          path : "outpatient",
+          children : [
+            {
+              path : "registration",
+              index : true,
+              element : <OpRegnScreen />
+            }
+          ]
         },
         {
           path: "settings",

@@ -6,3 +6,10 @@
   color: var(--reacIconsColor);
   font-size: x-large;
 }
+.reactIconsTwoIcons{
+  color: var(--reacIconsColor);
+  font-size: x-large;
+}
+.outPatientIcon{
+  transform: rotateY(180deg) !important;
+}

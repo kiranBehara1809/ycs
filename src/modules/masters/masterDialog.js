@@ -13,7 +13,18 @@ const MasterDialog = (props) => {
       props.closeDialog();
     }
   };
-  const tilePrefix = props?.selObj ? (props?.viewOnly ? "View " : "Edit ") : "Add "
+
+  const getTitle = () => {
+    if (props?.selObj && props?.dialogType === "view") {
+      return  "View ";
+    } else if (props?.selObj && props?.dialogType === "edit") {
+      return "Edit ";
+    } else if (props?.selObj && props?.dialogType === "delete") {
+      return "Delete ";
+    }else{
+     return "Add "
+    }
+  }
 
   return (
     <>
@@ -27,11 +38,14 @@ const MasterDialog = (props) => {
       >
         <CustomDialogHeader
           headerIcon={props.icon}
-          headerTitle={`${tilePrefix} ${props?.name}`}
+          headerTitle={`${getTitle()} ${props?.name}`}
           closeDialog={handleDialogClose}
         />
         <DialogContent sx={{ mt: -1 }}>
-          <GetMasterDialog {...props} />
+          <GetMasterDialog
+            {...props}
+            closeModalAndRenderTable={props.closeModalAndRenderTable}
+          />
         </DialogContent>
       </Dialog>
     </>

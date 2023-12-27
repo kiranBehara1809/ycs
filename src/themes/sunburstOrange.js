@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 
 const defaultGeneralSettings = {
-  fontSize: 18,
+  fontSize: 12,
   fontFamily: "sans-serif",
 };
 export const sunBurstOrange = createTheme({

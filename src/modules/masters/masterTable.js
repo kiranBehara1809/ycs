@@ -105,6 +105,14 @@ function EnhancedTableHead(props) {
         </TableCell>
         {columns.map((headCell) => (
           <TableCell
+            sx={{
+              minWidth: "150px !important",
+              width: "150px !important",
+              maxWidth: "150px !important",
+              whiteSpace: "nowrap !important",
+              overflow: "hidden !important",
+              textOverflow: "ellipsis !important",
+            }}
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
@@ -287,27 +295,27 @@ function EnhancedTableToolbar(props) {
                   Edit
                 </Button>
               </Tooltip>
+              <Tooltip arrow title={`Delete`}>
+                <Button
+                  onClick={() =>
+                    props.handleDeleteClick(masterObject, "delete")
+                  }
+                  variant="contained"
+                  size="small"
+                  color="error"
+                  sx={{
+                    pl: 2,
+                    pr: 2,
+                    ml: 0.5,
+                    mr: 0.5,
+                    textTransform: "capitalize",
+                  }}
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
+              </Tooltip>
             </>
-          ) : null}
-          {numSelected >= 1 ? (
-            <Tooltip arrow title={`Delete ${numSelected} records`}>
-              <Button
-                onClick={() => props.handleDeleteClick(masterObject, "delete")}
-                variant="contained"
-                size="small"
-                color="error"
-                sx={{
-                  pl: 2,
-                  pr: 2,
-                  ml: 0.5,
-                  mr: 0.5,
-                  textTransform: "capitalize",
-                }}
-                startIcon={<DeleteIcon />}
-              >
-                Delete ({numSelected})
-              </Button>
-            </Tooltip>
           ) : null}
         </>
       }
@@ -467,7 +475,16 @@ export default function EnhancedTable(props) {
                         </TableCell>
                         {props.tableColumns?.map((x, i) => {
                           return (
-                            <TableCell key={i}>
+                            <TableCell
+                              key={i}
+                              sx={{
+                                width: "150px !important",
+                                minWidth: "150px !important",
+                                whiteSpace: "nowrap !important",
+                                overflow: "hidden !important",
+                                textOverflow: "ellipsis !important",
+                              }}
+                            >
                               {convertColumnName(x, row[x])}
                             </TableCell>
                           );

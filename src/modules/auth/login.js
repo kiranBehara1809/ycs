@@ -17,45 +17,26 @@ import { useNavigate } from "react-router";
 import { addBaseUrl, showBasicToast } from "../../common/functions/function";
 import { handleLogin } from "../../http/authRequests";
 import { API_FAILURE_MSG } from "../../constants/errorText";
+import { ACCESS_TOKEN_KEY_NAME, TOKEN_SESSION_STORAGE_KEY_NAME } from "../../constants/project";
 
 
 export default function Login() {
   const theme = useTheme();
   const navigate = useNavigate();
-  useEffect(() => {
-    // getApodImageOfTheDay();
-  }, []);
-  const [apodHdUrl, setApodHdUrl] = useState(null);
-  const [showBackdrop, setShowBackdrop] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setShowBackdrop(true);
     const data = new FormData(event.currentTarget);
-    handleLogin(data.get("userName")).then((res) => {
-      if (res?.statusCode === 200) {
+    handleLogin(data.get("userName"), data.get("password")).then((res) => {
+      if (res) {
         showBasicToast("success", res.msg);
-        setShowBackdrop(false);
         navigate(addBaseUrl("home"));
-      } else {
-        setShowBackdrop(false);
-        showBasicToast("error", res?.msg || API_FAILURE_MSG);
-        return;
       }
     });
   };
 
   return (
     <>
-      <Backdrop
-        sx={{
-          color: "primary.main",
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-        }}
-        open={showBackdrop}
-      >
-        <CircularProgress sx={{ color: "secondary.main" }} />
-      </Backdrop>
       <Box
         sx={{
           display: "flex",
@@ -83,13 +64,6 @@ export default function Login() {
               width: "100%",
             }}
           >
-            <Avatar
-              sx={{
-                bgcolor: `${showBackdrop ? "primary.main" : "error.main"}`,
-              }}
-            >
-              {showBackdrop ? <LockOpenIcon /> : <LockOutlinedIcon />}
-            </Avatar>
             <Typography component="h1" variant="h5" sx={{ mt: 1 }}>
               Sign in
             </Typography>

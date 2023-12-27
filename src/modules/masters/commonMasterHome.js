@@ -8,9 +8,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import { MASTER_MENU } from "../../db/masterMenu";
+import { COMMON_MASTER_MENU, DOCTOR_MASTER_MENU } from "../../db/dbMasters/masterMenu";
 import { Stack } from "@mui/system";
-import { getMasterDataByEndPoint } from "../../http/masterRequests";
+import getSymbolFromCurrency from "currency-symbol-map";
+import {
+  getMastersDataByEndPointNew,
+} from "../../http/masterRequests";
 import {
   filterCustomTable,
   getTableColumnNames,
@@ -21,13 +24,13 @@ import EnhancedTable from "./masterTable";
 import CustomHeaderWithSearchBar from "../../common/components/customHeaderWithSearchBar";
 import SearchResultsNotFound from "../../common/components/searchResultsNotFound";
 import { API_FAILURE_MSG } from "../../constants/errorText";
-import { ADMIN_PANEL_ICON } from "../../constants/icons";
+import { ADMIN_PANEL_ICON, RX_DASHBOARD_ICON } from "../../constants/icons";
 import MasterDialog from "./masterDialog";
 
-const MasterHome = () => {
+const CommonMasterHome = () => {
   const theme = useTheme();
   const [showBackdrop, setShowBackdrop] = useState(false);
-  const [masterMenu, setMasterMenu] = useState(MASTER_MENU || []);
+  const [masterMenu, setMasterMenu] = useState(COMMON_MASTER_MENU || []);
   const [tablePayload, setTablePayload] = useState({
     tableColumns: [],
     tableData: [],
@@ -43,11 +46,11 @@ const MasterHome = () => {
       searchedInput === null ||
       searchedInput === undefined
     ) {
-      setMasterMenu(MASTER_MENU);
+      setMasterMenu(COMMON_MASTER_MENU);
       return;
     }
     setMasterMenu(
-      MASTER_MENU.filter((x) =>
+      COMMON_MASTER_MENU.filter((x) =>
         x.name
           .toString()
           .toLocaleLowerCase()
@@ -56,20 +59,44 @@ const MasterHome = () => {
     );
   };
   const handleMasterCardClick = (option) => {
-    getMasterDataByEndPoint(option.apiEndPoint).then((res) => {
-      if (res.status && res.status !== 200) {
-        showBasicToast("error", res?.msg || API_FAILURE_MSG);
-        return;
+    getMastersDataByEndPointNew(option.apiEndPoint).then((res) => {
+      if (res) {
+        setTablePayload({
+          tableColumns: getTableColumnNames(res),
+          tableData: res,
+          duplicateTableDta: res,
+          tableName: option.name,
+          tableIcon: option.icon,
+          masterObject: option,
+        });
       }
-      setTablePayload({
-        tableColumns: getTableColumnNames(res.data),
-        tableData: res.data,
-        duplicateTableDta: res.data,
-        tableName: option.name,
-        tableIcon: option.icon,
-        masterObject: option,
-      });
     });
+  };
+
+
+  const closeModalAndRenderTable = (obj) => {
+    handleMasterCardClick(obj);
+    refreshTable(obj);
+    setDialogProps(null);
+  };
+
+  const refreshTable = (obj) => {
+    setDialogProps({ uniqueName: "" });
+    setTablePayload((prev) => {
+      return {
+        ...prev,
+        tableName: "",
+      };
+    });
+    setTimeout(() => {
+      setTablePayload((prev) => {
+        return {
+          ...prev,
+          tableName: obj.name,
+        };
+      });
+      setDialogProps(null);
+    }, 30);
   };
 
   const handleTableSearchFilter = (searchTerm) => {
@@ -89,19 +116,21 @@ const MasterHome = () => {
   };
 
   const handleAddBtnClick = (masterObj) => {
-    console.log(masterObj);
-    setDialogProps({ ...masterObj, selObj: null });
+    setDialogProps({ ...masterObj, dialogType: "add", selObj: null });
   };
 
   const handleEditBtnClick = (masterObj, selRows) => {
-    setDialogProps({ ...masterObj, viewOnly: false, selObj: selRows[0] });
+    setDialogProps({ ...masterObj, dialogType: "edit", selObj: selRows[0] });
   };
+
   const handleViewBtnClick = (masterObj, selRows) => {
-    setDialogProps({ ...masterObj, viewOnly: true, selObj: selRows[0] });
+    setDialogProps({ ...masterObj, dialogType: "view", selObj: selRows[0] });
   };
+
   const handleDeleteBtnClick = (masterObj, selRows) => {
-    console.log(selRows);
+    setDialogProps({ ...masterObj, dialogType: "delete", selObj: selRows[0] });
   };
+
   return (
     <>
       <Backdrop
@@ -117,9 +146,9 @@ const MasterHome = () => {
         <Grid item xs={12} sm={5}>
           <CustomHeaderWithSearchBar
             searchedInput={handleSearchInput}
-            headerText={"Masters"}
-            headerIcon={ADMIN_PANEL_ICON}
-            placeholder={"Search Masters"}
+            headerText={"Common Masters"}
+            headerIcon={RX_DASHBOARD_ICON}
+            placeholder={"Search Common Masters"}
           />
 
           {masterMenu.length === 0 ? <SearchResultsNotFound /> : null}
@@ -139,6 +168,11 @@ const MasterHome = () => {
                     borderRadius: "10px",
                     p: 1,
                     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                    borderBottom:
+                      tablePayload.masterObject?.uniqueName ===
+                      option.uniqueName
+                        ? `1.5px solid ${theme.palette.primary.main} !important`
+                        : "",
                     background: (theme) =>
                       tablePayload.masterObject?.uniqueName ===
                       option.uniqueName
@@ -200,10 +234,13 @@ const MasterHome = () => {
         <MasterDialog
           {...dialogProps}
           closeDialog={() => setDialogProps(null)}
+          closeModalAndRenderTable={(dataObj) =>
+            closeModalAndRenderTable(dataObj)
+          }
         />
       ) : null}
     </>
   );
 };
 
-export default MasterHome;
+export default CommonMasterHome;
