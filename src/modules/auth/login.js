@@ -46,6 +46,7 @@ export default function Login() {
           width: "100%",
           height: "100vh",
           background: "background.default",
+          p: 1,
         }}
       >
         <Box
@@ -62,14 +63,15 @@ export default function Login() {
               flexDirection: "column",
               alignItems: "center",
               width: "100%",
+              mt : "-8px"
             }}
           >
-            <Typography component="h1" variant="h5" sx={{ mt: 1 }}>
+            <Typography component="h1" variant="h5" >
               Sign in
             </Typography>
           </Box>
 
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} >
             <TextField
               margin="normal"
               required
@@ -98,7 +100,7 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Grid container sx={{ mt: 1 }}>
+            {/* <Grid container sx={{ mt: 1 }}>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
@@ -109,7 +111,7 @@ export default function Login() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
       </Box>

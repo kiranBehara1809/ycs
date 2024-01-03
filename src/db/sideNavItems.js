@@ -1,5 +1,5 @@
 
-import { ADMIN_PANEL_ICON, APPOINTMENT_CALENDAR_ICON, DOCTOR_ICON, HOME_ICON, IN_PATIENT_ICON, OUT_PATIENT_ICON, RX_DASHBOARD_ICON, SETTINGS_ICON } from "../constants/icons";
+import { ADMIN_PANEL_ICON, APPOINTMENT_CALENDAR_ICON, DOCTOR_ICON, HOME_ICON, IN_PATIENT_ICON, OUT_PATIENT_ICON, RX_DASHBOARD_ICON, SETTINGS_ICON, USERS_ICON } from "../constants/icons";
 
 const SIDE_NAV_ITEMS = [
   {
@@ -15,13 +15,6 @@ const SIDE_NAV_ITEMS = [
     openInNewTab: false,
     icon: OUT_PATIENT_ICON,
     tooltip: "Out Patient",
-  },
-  {
-    name: "In Patient",
-    url: "home",
-    openInNewTab: false,
-    icon: IN_PATIENT_ICON,
-    tooltip: "In Patient",
   },
   {
     name: "Appointment",
@@ -51,6 +44,14 @@ const SIDE_NAV_ITEMS = [
         openInNewTab: false,
         icon: DOCTOR_ICON,
         tooltip: "Doctor Masters",
+      },
+      {
+        name: "Users & Roles",
+        parent: "Masters",
+        url: "masters/rolesAndUsers",
+        openInNewTab: false,
+        icon: USERS_ICON,
+        tooltip: "Users & Roles Masters",
       },
     ],
   },
