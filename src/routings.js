@@ -6,7 +6,8 @@ import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
 import CommonMasterHome from "./modules/masters/commonMasterHome"
 import DoctorMasterHome from "./modules/masters/doctorMasterHome";
-import OpRegnScreen from "./modules/outPatient/opRegnScreen";
+import OpRegnScreen from "./modules/outPatient/registration/opRegnScreen";
+import RolesAndUsersMasterHome from "./modules/masters/rolesAndUsersMasterHome";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -46,17 +47,21 @@ export default function Routings() {
               path: "doctor",
               element: <DoctorMasterHome />,
             },
+            {
+              path: "rolesAndUsers",
+              element: <RolesAndUsersMasterHome />,
+            },
           ],
         },
         {
-          path : "outpatient",
-          children : [
+          path: "outpatient",
+          children: [
             {
-              path : "registration",
-              index : true,
-              element : <OpRegnScreen />
-            }
-          ]
+              path: "registration",
+              index: true,
+              element: <OpRegnScreen />,
+            },
+          ],
         },
         {
           path: "settings",

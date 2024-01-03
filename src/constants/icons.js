@@ -27,6 +27,22 @@ import { HiMiniCurrencyRupee } from "react-icons/hi2";
 import { BiSolidCity } from "react-icons/bi";
 import HolidayVillageIcon from "@mui/icons-material/HolidayVillage";
 import FlagIcon from "@mui/icons-material/Flag";
+import { FaHouseFlag } from "react-icons/fa6";
+import { FaIdCard } from "react-icons/fa";
+import { FaUsersRays } from "react-icons/fa6";
+import { FaCreditCard } from "react-icons/fa";
+import { GiByzantinTemple } from "react-icons/gi";
+import { GiBank } from "react-icons/gi";
+import { FaMoneyBillAlt } from "react-icons/fa";
+import { FaUserGraduate } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+import { FaUsersCog } from "react-icons/fa";
+import InfoIcon from "@mui/icons-material/Info";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import { ImProfile } from "react-icons/im";
+import { TbError404 } from "react-icons/tb";
+
+
 
 
 
@@ -44,8 +60,16 @@ const BLOOD_GROUP_ICON = (
 
 const GENDER_ICON = <IoMdFemale className="reactIconsColor" />;
 const CURRENCY_ICON = <HiMiniCurrencyRupee className="reactIconsColor" />;
+const DOC_DEGREE_ICON = <FaUserGraduate className="reactIconsColor" />;
 const CITY_ICON = <BiSolidCity className="reactIconsColor" />;
 const LANGUAGE_ICON = <GrLanguage className="reactIconsColor" />;
+const NATIONALITY_ICON = <FaHouseFlag className="reactIconsColor" />;
+const ID_TYPE_ICON = <FaIdCard className="reactIconsColor" />;
+const PATIENT_TYPE_ICON = <FaUsersRays className="reactIconsColor" />;
+const RELIGION_ICON = <GiByzantinTemple className="reactIconsColor" />;
+const BANK_ICON = <GiBank className="reactIconsColor" />;
+const PAYMENT_TYPE_ICON = <FaMoneyBillAlt className="reactIconsColor" />;
+const PATIENT_CATEGORY_ICON = <FaCreditCard className="reactIconsColor" />;
 const MARITAL_STATUS_ICON = <BiMaleFemale className="reactIconsColor" />;
 const STATE_ICON = (
   <HolidayVillageIcon fontSize="large" sx={{ color: "primary.main" }} />
@@ -84,6 +108,23 @@ const IN_PATIENT_ICON = (
   </>
 );
 
+const  USERS_ICON = <FaUsers className="reactIconsTwoIcons"  />
+const ROLES_ICON = <FaUsersCog className="reactIconsTwoIcons" />;
+const PAGE_NOT_FOUND_ICON = <TbError404 className="pageNotFoundIcon" />;
+
+const ACC_POPOVER_PROFILE_ICON = (
+  <ImProfile className="reactIconsColorMedium" />
+);
+const ACC_POPOVER_INFO_ICON = (
+  <InfoIcon fontSize="medium" sx={{ color: "primary.main" }} />
+);
+const ACC_POPOVER_SETTINGS_ICON = (
+  <SettingsIcon fontSize="medium" sx={{ color: "primary.main" }} />
+);
+const ACC_POPOVER_LOGOUT_ICON = (
+  <PowerSettingsNewIcon fontSize="medium" sx={{ color: "primary.main" }} />
+);
+
 export {
   SETTINGS_ICON,
   HOME_ICON,
@@ -109,4 +150,19 @@ export {
   CITY_ICON,
   STATE_ICON,
   COUNTRY_ICON,
+  NATIONALITY_ICON,
+  ID_TYPE_ICON,
+  PATIENT_TYPE_ICON,
+  PATIENT_CATEGORY_ICON,
+  RELIGION_ICON,
+  BANK_ICON,
+  PAYMENT_TYPE_ICON,
+  DOC_DEGREE_ICON,
+  USERS_ICON,
+  ROLES_ICON,
+  ACC_POPOVER_PROFILE_ICON,
+  ACC_POPOVER_INFO_ICON,
+  ACC_POPOVER_LOGOUT_ICON,
+  ACC_POPOVER_SETTINGS_ICON,
+  PAGE_NOT_FOUND_ICON,
 };

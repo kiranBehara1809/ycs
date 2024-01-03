@@ -31,6 +31,7 @@ export default function CustomHeaderWithSearchBar(props) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        maxWidth : "100% !important"
       }}
     >
       {props?.headerIcon || null}

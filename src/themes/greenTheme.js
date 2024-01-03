@@ -27,6 +27,14 @@ const greenTheme = createTheme({
     fontSize: defaultGeneralSettings.fontSize,
   },
   components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        asterisk: {
+          color: "#FF0000",
+          fontSize : "20px",
+        },
+      },
+    },
     MuiTabs: {
       styleOverrides: {
         root: {

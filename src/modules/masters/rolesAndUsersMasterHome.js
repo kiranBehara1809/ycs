@@ -8,9 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import {
-  DOCTOR_MASTER_MENU,
-} from "../../db/dbMasters/masterMenu";
+import { DOCTOR_MASTER_MENU, ROLES_USERS_MASTER_MENU } from "../../db/dbMasters/masterMenu";
 import { Stack } from "@mui/system";
 import { getMastersDataByEndPointNew } from "../../http/masterRequests";
 import {
@@ -24,10 +22,9 @@ import SearchResultsNotFound from "../../common/components/searchResultsNotFound
 import { ADMIN_PANEL_ICON, DOCTOR_ICON } from "../../constants/icons";
 import MasterDialog from "./masterDialog";
 
-const DoctorMasterHome = () => {
+const RolesAndUsersMasterHome = () => {
   const theme = useTheme();
-  const [showBackdrop, setShowBackdrop] = useState(false);
-  const [masterMenu, setMasterMenu] = useState(DOCTOR_MASTER_MENU || []);
+  const [masterMenu, setMasterMenu] = useState(ROLES_USERS_MASTER_MENU || []);
   const [tablePayload, setTablePayload] = useState({
     tableColumns: [],
     tableData: [],
@@ -43,11 +40,11 @@ const DoctorMasterHome = () => {
       searchedInput === null ||
       searchedInput === undefined
     ) {
-      setMasterMenu(DOCTOR_MASTER_MENU);
+      setMasterMenu(ROLES_USERS_MASTER_MENU);
       return;
     }
     setMasterMenu(
-      DOCTOR_MASTER_MENU.filter((x) =>
+      ROLES_USERS_MASTER_MENU.filter((x) =>
         x.name
           .toString()
           .toLocaleLowerCase()
@@ -129,27 +126,13 @@ const DoctorMasterHome = () => {
 
   return (
     <>
-      <Backdrop
-        sx={{
-          color: "primary.main",
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-        }}
-        open={showBackdrop}
-      >
-        <CircularProgress sx={{ color: "secondary.main" }} />
-      </Backdrop>
-      <Grid
-        container
-        spacing={0.5}
-        sx={{ width: "calc(100vw - 53px) !important" }}
-        direction={"row"}
-      >
+      <Grid container spacing={0.5} direction={"row"} sx={{width : "calc(100vw - 53px) !important"}}>
         <Grid item xs={12} sm={4.5}>
           <CustomHeaderWithSearchBar
             searchedInput={handleSearchInput}
-            headerText={"Doctor Masters"}
+            headerText={"Roles And Users"}
             headerIcon={DOCTOR_ICON}
-            placeholder={"Search Doctor Masters"}
+            placeholder={"Search Roles And Users"}
           />
 
           {masterMenu.length === 0 ? <SearchResultsNotFound /> : null}
@@ -244,4 +227,4 @@ const DoctorMasterHome = () => {
   );
 };
 
-export default DoctorMasterHome;
+export default RolesAndUsersMasterHome;

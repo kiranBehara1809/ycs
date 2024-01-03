@@ -142,8 +142,13 @@ const CommonMasterHome = () => {
       >
         <CircularProgress sx={{ color: "secondary.main" }} />
       </Backdrop>
-      <Grid container spacing={1} direction={"row"}>
-        <Grid item xs={12} sm={5}>
+      <Grid
+        container
+        spacing={0.5}
+        direction={"row"}
+        sx={{ width: "calc(100vw - 53px) !important" }}
+      >
+        <Grid item xs={12} sm={4.5}>
           <CustomHeaderWithSearchBar
             searchedInput={handleSearchInput}
             headerText={"Common Masters"}
@@ -209,7 +214,7 @@ const CommonMasterHome = () => {
           </Grid>
         </Grid>
 
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={7.5}>
           {tablePayload.tableName === "" ? null : (
             <EnhancedTable
               key={tablePayload.tableName}

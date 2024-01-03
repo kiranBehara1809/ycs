@@ -28,7 +28,7 @@ import {
   convertCamelCaseToTitleText,
   convertColumnName,
 } from "../../common/functions/function";
-import { Button, useTheme } from "@mui/material";
+import { Button, Grid, useTheme } from "@mui/material";
 import SearchResultsNotFound from "../../common/components/searchResultsNotFound";
 import CustomHeaderWithSearchBar from "../../common/components/customHeaderWithSearchBar";
 
@@ -104,34 +104,38 @@ function EnhancedTableHead(props) {
           />
         </TableCell>
         {columns.map((headCell) => (
-          <TableCell
-            sx={{
-              minWidth: "150px !important",
-              width: "150px !important",
-              maxWidth: "150px !important",
-              whiteSpace: "nowrap !important",
-              overflow: "hidden !important",
-              textOverflow: "ellipsis !important",
-            }}
-            key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "normal"}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-              sx={{ fontWeight: "bold" }}
+          <Tooltip title={headCell.label?.length > 25 ? headCell.label: ""}>
+            <TableCell
+              sx={{
+                minWidth: "150px !important",
+                width: "150px !important",
+                maxWidth: "150px !important",
+                whiteSpace: "nowrap !important",
+                overflow: "hidden !important",
+                textOverflow: "ellipsis !important",
+              }}
+              key={headCell.id}
+              align={headCell.numeric ? "right" : "left"}
+              padding={headCell.disablePadding ? "none" : "normal"}
+              sortDirection={orderBy === headCell.id ? order : false}
             >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : "asc"}
+                onClick={createSortHandler(headCell.id)}
+                sx={{ fontWeight: "bold" }}
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <Box component="span" sx={visuallyHidden}>
+                    {order === "desc"
+                      ? "sorted descending"
+                      : "sorted ascending"}
+                  </Box>
+                ) : null}
+              </TableSortLabel>
+            </TableCell>
+          </Tooltip>
         ))}
       </TableRow>
     </TableHead>
@@ -154,81 +158,6 @@ function EnhancedTableToolbar(props) {
   };
 
   return (
-    // <Toolbar
-    //   sx={{
-    //     pl: { sm: 2 },
-    //     pr: { xs: 1, sm: 1 },
-    //     height: "40px !important",
-    //     borderRadius: "3px",
-    //     minHeight: "30px !important",
-    //     padding: "5px 5px",
-    //     boxShadow:
-    //       "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
-    //     ...(numSelected > 0 && {
-    //       bgcolor: (theme) =>
-    //         alpha(
-    //           theme.palette.primary.main,
-    //           theme.palette.action.activatedOpacity
-    //         ),
-    //     }),
-    //   }}
-    // >
-    //   <Typography
-    //     sx={{ flex: "1 1 100%", display: "flex", alignItems: "center" }}
-    //     variant="h6"
-    //     id="tableTitle"
-    //     component="div"
-    //   >
-    //     {tableIcon} &nbsp; {tableName}
-    //   </Typography>
-
-    //   {numSelected > 0 ? (
-    //     <>
-    //       <Typography
-    //         sx={{ flex: "1 1 100%" }}
-    //         color="inherit"
-    //         variant="subtitle1"
-    //         component="div"
-    //       >
-    //         {numSelected} selected
-    //       </Typography>
-    //       {numSelected === 1 ? (
-    //         <Tooltip arrow title="Edit">
-    //           <IconButton>
-    //             <EditIcon />
-    //           </IconButton>
-    //         </Tooltip>
-    //       ) : null}
-    //       <Tooltip arrow title="Delete">
-    //         <IconButton>
-    //           <DeleteIcon />
-    //         </IconButton>
-    //       </Tooltip>
-    //     </>
-    //   ) : (
-    //     <>
-    //       {masterObject.hideAddBtn ? null : (
-    //         <Tooltip arrow title={`Add ${tableName}`}>
-    //           <Button
-    //             onClick={() => handleAddBtnClick()}
-    //             variant="contained"
-    //             size="small"
-    //             sx={{ pl: 2, pr: 2, textTransform: "capitalize" }}
-    //             startIcon={<AddBoxIcon />}
-    //           >
-    //             Add
-    //           </Button>
-    //         </Tooltip>
-    //       )}
-
-    //       <Tooltip arrow title="Filter list">
-    //         <IconButton>
-    //           <FilterListIcon />
-    //         </IconButton>
-    //       </Tooltip>
-    //     </>
-    //   )}
-    // </Toolbar>
     <CustomHeaderWithSearchBar
       key={tableName}
       headerIcon={tableIcon}
@@ -412,8 +341,24 @@ export default function EnhancedTable(props) {
   );
 
   return (
-    <Box sx={{ width: "100%" }} key={props.tableName}>
-      <Paper sx={{ width: "100%", mb: 1 }}>
+    <Box
+      sx={{
+        width: "calc(100% - 8px) !important",
+        maxWidth: "calc(100% - 8px) !important",
+        overflowX: "auto",
+      }}
+      key={props.tableName}
+    >
+      <Paper
+        sx={{
+          mb: 1,
+          width: "100% !important",
+          maxWidth: "100% !important",
+          overflowX: "auto",
+          overflowY: "hidden",
+          "boxShadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px"
+        }}
+      >
         <EnhancedTableToolbar
           numSelected={selected.length}
           masterObject={props.masterObject}

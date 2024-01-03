@@ -6,14 +6,27 @@ import { LOADER_ACTIONS } from "../store/slices/loader";
 import { showBasicToast } from "../common/functions/function";
 import { API_FAILURE_MSG } from "../constants/errorText";
 
-const getMasterDataByEndPoint = async (endPoint) => {
-  try {
-    let response = await axios.get(`${API_ENDPOINT}${endPoint}/all`);
-    return response.data;
-  } catch (e) {
-    console.log(`Error While calling ${endPoint} API ---> `, e);
-    return { status: e.response.status, msg: e.message };
-  }
+const getMasterDataForDropdown = async (endPoint, labelKey) => {
+ store.dispatch(LOADER_ACTIONS.setLoading(true));
+ try {
+   let response = await api.get(`${endPoint}`);
+   const ddData = response?.data?.map(x => {
+    return {
+      ...x,
+      label: x[labelKey] || x.shortName,
+      id: x._id,
+    };
+   }) || []
+   store.dispatch(LOADER_ACTIONS.setLoading(false));
+   return ddData || null;
+ } catch (e) {
+   store.dispatch(LOADER_ACTIONS.setLoading(false));
+   showBasicToast(
+     "error",
+     e?.response?.data?.error?.message || API_FAILURE_MSG
+   );
+   console.log(`Error While calling ${endPoint} API New ---> `, e);
+ }
 };
 
 const getMastersDataByEndPointNew = async (endPoint) => {
@@ -78,7 +91,7 @@ const deleteMastersData = async (endPoint) => {
 };
 
 export {
-  getMasterDataByEndPoint,
+  getMasterDataForDropdown,
   getMastersDataByEndPointNew,
   saveMastersData,
   updateMastersData,
