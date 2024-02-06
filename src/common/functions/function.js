@@ -135,7 +135,6 @@ const filterCustomTable = (attributes, rows, searchTerm) => {
 
 function calculateAgeFromDob(birthdate) {
   var birthDate = new Date(birthdate);
-  console.log("birthDate", birthDate);
   var currentDate = new Date();
   var age = currentDate.getFullYear() - birthDate.getFullYear();
   if (
@@ -163,9 +162,36 @@ function calculateAgeFromDob(birthdate) {
     age: age,
     months: months,
     days: days,
-    currentAgeStr : `${age}Y ${months}M ${days}D`
+    currentAgeStr: `${age}Y ${months <= 0 ? 0 : months}M ${days}D`,
   };
 }
+
+const calculateAge = (birthdate) => {
+  const birthdateObj = new Date(birthdate);
+  if(birthdateObj === "Invalid Date"){
+    return {
+      currentAgeStr: ``,
+    };
+  }
+  const today = new Date();
+
+  let years = today.getFullYear() - birthdateObj.getFullYear();
+  let months = today.getMonth() - birthdateObj.getMonth();
+  let days = today.getDate() - birthdateObj.getDate();
+
+  // Adjust for negative months or days
+  if (days < 0) {
+    months--;
+    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+  return {
+    currentAgeStr: `${years}Y ${months <= 0 ? 0 : months}M ${days}D`,
+  };
+};
 
 export {
   addBaseUrl,
@@ -177,4 +203,5 @@ export {
   filterCustomTable,
   showTokenExpiredAndLogout,
   calculateAgeFromDob,
+  calculateAge,
 };

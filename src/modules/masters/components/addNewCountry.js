@@ -13,6 +13,8 @@ import {
   saveMastersData,
   updateMastersData,
 } from "../../../http/masterRequests";
+import { UI } from "../../../constants/project";
+
 
 const AddNewCountry = (props) => {
   const [formValues, setFormValues] = useState({
@@ -64,8 +66,8 @@ const AddNewCountry = (props) => {
       return {
         shortName: "",
         completeName: "",
-        currencySymbol : "",
-        callingCode : ""
+        currencySymbol: "",
+        callingCode: "",
       };
     });
   };
@@ -102,7 +104,7 @@ const AddNewCountry = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -121,7 +123,7 @@ const AddNewCountry = (props) => {
             fullWidth
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
             helperText={`Max Length is ${props?.completeNameMaxLength || 30}`}
           />
         </FormControl>
@@ -142,7 +144,7 @@ const AddNewCountry = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -162,17 +164,17 @@ const AddNewCountry = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

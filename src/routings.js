@@ -4,10 +4,11 @@ import { BASE_ROUTE_PATH } from "./constants/project";
 import PageNotFound from "./common/components/pageNotFound";
 import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
-import CommonMasterHome from "./modules/masters/commonMasterHome"
+import CommonMasterHome from "./modules/masters/commonMasterHome";
 import DoctorMasterHome from "./modules/masters/doctorMasterHome";
 import OpRegnScreen from "./modules/outPatient/registration/opRegnScreen";
 import RolesAndUsersMasterHome from "./modules/masters/rolesAndUsersMasterHome";
+import ProfileDialog from "./modules/loggedInUser/profile";
 
 export default function Routings() {
   const routes = useRoutes([

@@ -16,8 +16,14 @@ import { ACCOUNT_POPOVER_LIST } from "../db/header/accountPopoverDb";
 import { useNavigate } from "react-router";
 import { addBaseUrl, showBasicToast, showConfirmToast } from "../common/functions/function";
 import { handleLogout } from "../http/authRequests";
+import { getCurrentUser } from "../http/userRequests";
+import ProfileDialog from "../modules/loggedInUser/profile";
+import store from "../store";
+import { CURRENT_USER_ACTIONS } from "../store/slices/currentUser";
 
 const Header = () => {
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+  const [ currentUserData, setCurrentUserData] = useState(null)
   const navigate = useNavigate();
   const customIconStyles = {
     margin: "0px 5px",
@@ -25,13 +31,27 @@ const Header = () => {
   };
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  useEffect(() => {
+    getCurrentLoggedUser();
+  }, []);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  const handleProfileDialogClose = (value) => {
+    setProfileDialogOpen(false);
+  };
   const handleAccountPopverOption =  (option) => {
+    if(option.url === null){
+      setProfileDialogOpen(true)
+      handleClose();
+      return;
+    }
     if (option.url === "/login") {
       showConfirmToast("warning", "Do you want to logout?").then(async (res) => {
         if (res.isConfirmed) {
@@ -54,8 +74,19 @@ const Header = () => {
     }
   };
 
+   const getCurrentLoggedUser = async () => {
+     const currentUser = await getCurrentUser();
+     setCurrentUserData(currentUser || null);
+     store.dispatch(CURRENT_USER_ACTIONS.setCurrentUser(currentUser || null))
+   };
+
   return (
     <>
+      <ProfileDialog
+        currentUserData={currentUserData}
+        profileDialogOpen={profileDialogOpen}
+        setProfileDialogOpen={handleProfileDialogClose}
+      />
       <Box
         sx={{
           display: "flex",

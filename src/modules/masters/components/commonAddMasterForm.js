@@ -14,6 +14,7 @@ import {
   updateMastersData,
 } from "../../../http/masterRequests";
 import { useTheme } from "@emotion/react";
+import { UI } from "../../../constants/project";
 
 const CommonAddMasterForm = (props) => {
   const theme = useTheme();
@@ -100,7 +101,7 @@ const CommonAddMasterForm = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -119,18 +120,18 @@ const CommonAddMasterForm = (props) => {
             fullWidth
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
             helperText={`Max Length is ${props?.completeNameMaxLength || 30}`}
           />
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

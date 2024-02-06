@@ -16,7 +16,9 @@ import {
   saveMastersData,
   updateMastersData,
 } from "../../../http/masterRequests";
-import { SLOT_TIME_IN_MINUTES} from '../../../constants/appointment'
+import { SLOT_TIME_IN_MINUTES } from "../../../constants/appointment";
+import { UI } from "../../../constants/project";
+
 
 const AddNewDoctor = (props) => {
   const [degrees, setDegrees] = useState([]);
@@ -27,7 +29,7 @@ const AddNewDoctor = (props) => {
   const [selectedGender, setSelectedGender] = useState(null);
   const [selectedSlotTime, setSelectedSlotTime] = useState(null);
   const [formValues, setFormValues] = useState({
-    docConsultationFees : props?.selObj?.docConsultationFees || "",
+    docConsultationFees: props?.selObj?.docConsultationFees || "",
     doctorName: props?.selObj?.doctorName || "",
     docGender: props?.selObj?.docGender || null,
     speaciality: props?.selObj?.speaciality || null,
@@ -45,7 +47,9 @@ const AddNewDoctor = (props) => {
     setSelectedDegree(props?.selObj?.degrees || []);
     setSelectedSpeciality(props?.selObj?.speaciality || null);
     setSelectedGender(props?.selObj?.docGender || null);
-    setSelectedSlotTime(props?.selObj?.docSlotTimeIntervalInMinutes.toString() || null);
+    setSelectedSlotTime(
+      props?.selObj?.docSlotTimeIntervalInMinutes.toString() || null
+    );
   }, [props]);
 
   const getInitialApi = async () => {
@@ -66,8 +70,6 @@ const AddNewDoctor = (props) => {
     setGenderList(genders || []);
   };
 
-
-
   const disabledFlag =
     props?.dialogType === "delete" || props?.dialogType === "view";
 
@@ -86,19 +88,19 @@ const AddNewDoctor = (props) => {
   };
 
   const handleSave = async (event) => {
-    let dg = []
-    selectedDegree?.map(x => {
-        const { id, label } = degrees?.find(y => y.label === x.label)
-        dg.push({
-            objId : id,
-            label : label
-        })
-    })
+    let dg = [];
+    selectedDegree?.map((x) => {
+      const { id, label } = degrees?.find((y) => y.label === x.label);
+      dg.push({
+        objId: id,
+        label: label,
+      });
+    });
     event.preventDefault();
     const payload = {
       ...formValues,
-      docSlotTimeIntervalInMinutes : +selectedSlotTime || 15,
-      degrees: dg || []
+      docSlotTimeIntervalInMinutes: +selectedSlotTime || 15,
+      degrees: dg || [],
     };
     const api = props?.selObj
       ? `${props.apiEndPoint}/update/${props.selObj._id}`
@@ -126,7 +128,7 @@ const AddNewDoctor = (props) => {
     setSelectedDegree([]);
     setSelectedSpeciality("");
     setSelectedGender("");
-    setSelectedSlotTime("")
+    setSelectedSlotTime("");
     setFormValues((prev) => {
       return {
         doctorName: "",
@@ -134,7 +136,7 @@ const AddNewDoctor = (props) => {
         speaciality: null,
         additionalInformation: "",
         docSlotTimeIntervalInMinutes: null,
-        docConsultationFees : ""
+        docConsultationFees: "",
       };
     });
   };
@@ -163,7 +165,7 @@ const AddNewDoctor = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%" }}>
@@ -190,7 +192,7 @@ const AddNewDoctor = (props) => {
                 {...params}
                 required
                 label="Gender"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="docGender"
               />
             )}
@@ -217,7 +219,7 @@ const AddNewDoctor = (props) => {
               <TextField
                 {...params}
                 label="Degrees"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="degrees"
               />
             )}
@@ -248,7 +250,7 @@ const AddNewDoctor = (props) => {
                 {...params}
                 required
                 label="Speaciality"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="speaciality"
               />
             )}
@@ -273,7 +275,7 @@ const AddNewDoctor = (props) => {
                 {...params}
                 required
                 label="Slot Time"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="docSlotTimeIntervalInMinutes"
               />
             )}
@@ -296,7 +298,7 @@ const AddNewDoctor = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%" }}>
@@ -317,17 +319,17 @@ const AddNewDoctor = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

@@ -134,7 +134,7 @@ export default function SideNav() {
 
   const handleNestedSideNavClick = (option) => {
     if (option.url !== null) {
-      // handleDrawerClose();
+      handleDrawerClose();
       // clearCurrentOptionAndCloseNestedArr()
       navigate(addBaseUrl(option.url));
     }
@@ -175,7 +175,7 @@ export default function SideNav() {
           <Header />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} >
         <DrawerHeader sx={{ minHeight: "40px !important" }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
