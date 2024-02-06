@@ -15,6 +15,7 @@ import {
   saveMastersData,
   updateMastersData,
 } from "../../../http/masterRequests";
+import { UI } from "../../../constants/project";
 
 const AddNewCity = (props) => {
   const [states, setStates] = useState([]);
@@ -123,7 +124,7 @@ const AddNewCity = (props) => {
                 {...params}
                 required
                 label="State"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="stateId"
               />
             )}
@@ -155,7 +156,7 @@ const AddNewCity = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -174,18 +175,18 @@ const AddNewCity = (props) => {
             fullWidth
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
             helperText={`Max Length is ${props?.completeNameMaxLength || 30}`}
           />
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

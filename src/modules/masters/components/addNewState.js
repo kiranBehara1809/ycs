@@ -15,6 +15,8 @@ import {
   saveMastersData,
   updateMastersData,
 } from "../../../http/masterRequests";
+import { UI } from "../../../constants/project";
+
 
 const AddNewState = (props) => {
   const [countires, setCountries] = useState([]);
@@ -30,19 +32,19 @@ const AddNewState = (props) => {
   }, []);
 
   useEffect(() => {
-    setSelectedCountry(props?.selObj?.countryName || "")
-  } ,[props])
+    setSelectedCountry(props?.selObj?.countryName || "");
+  }, [props]);
 
   const getAllCountries = async () => {
     const response = await getMastersDataByEndPointNew(`/masters/country`);
-    let defaultCountry = null
+    let defaultCountry = null;
     const countries = response?.map((x) => {
-      if(x.default){
-        defaultCountry = x
+      if (x.default) {
+        defaultCountry = x;
       }
       return {
         label: `${x.completeName}`,
-        flag : `${x.flag}`,
+        flag: `${x.flag}`,
         id: x._id,
       };
     });
@@ -52,7 +54,7 @@ const AddNewState = (props) => {
     //   })
     //   setSelectedCountry(defaultCountry?.completeName)
     // }
-     setCountries(countries || []);
+    setCountries(countries || []);
   };
 
   const readonlyFlag =
@@ -74,7 +76,7 @@ const AddNewState = (props) => {
 
   const handleSave = async (event) => {
     event.preventDefault();
-    const payload = {...formValues, countryName : selectedCountry};
+    const payload = { ...formValues, countryName: selectedCountry };
     const api = props?.selObj
       ? `${props.apiEndPoint}/update/${props.selObj._id}`
       : `${props.apiEndPoint}`;
@@ -134,7 +136,7 @@ const AddNewState = (props) => {
                 {...params}
                 required
                 label="Country"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="countryId"
               />
             )}
@@ -166,7 +168,7 @@ const AddNewState = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -185,18 +187,18 @@ const AddNewState = (props) => {
             fullWidth
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
             helperText={`Max Length is ${props?.completeNameMaxLength || 30}`}
           />
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

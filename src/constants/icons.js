@@ -12,6 +12,7 @@ import { FaHandshake } from "react-icons/fa";
 import CancelIcon from "@mui/icons-material/Cancel";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import { FaUserDoctor } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { FaStethoscope } from "react-icons/fa";
 import { FaBuildingUser } from "react-icons/fa6";
@@ -41,7 +42,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { ImProfile } from "react-icons/im";
 import { TbError404 } from "react-icons/tb";
-
+import { GiMoneyStack } from "react-icons/gi";
 
 
 
@@ -125,6 +126,13 @@ const ACC_POPOVER_LOGOUT_ICON = (
   <PowerSettingsNewIcon fontSize="medium" sx={{ color: "primary.main" }} />
 );
 
+//------------------ common icons ---------------
+const ADDRESS_ICON = <FaAddressCard className="reactIconsColor" />;
+const USER_ICON = <FaUser className="reactIconsColor" />;
+const MONEY_STACK = <GiMoneyStack className="reactIconsColor" />;
+
+//------------------ common icons ---------------
+
 export {
   SETTINGS_ICON,
   HOME_ICON,
@@ -165,4 +173,7 @@ export {
   ACC_POPOVER_LOGOUT_ICON,
   ACC_POPOVER_SETTINGS_ICON,
   PAGE_NOT_FOUND_ICON,
+  ADDRESS_ICON,
+  USER_ICON,
+  MONEY_STACK,
 };

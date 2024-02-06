@@ -8,7 +8,7 @@ const SettingsHome = () => {
       <CustomHeaderWithSearchBar
         headerText="Settings"
         headerIcon={SETTINGS_ICON}
-        placeholder="Serach Settings"
+        placeholder="Search Settings"
       />
     </>
   );

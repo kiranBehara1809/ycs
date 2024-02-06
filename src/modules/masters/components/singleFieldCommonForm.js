@@ -14,6 +14,7 @@ import {
   updateMastersData,
 } from "../../../http/masterRequests";
 import { useTheme } from "@emotion/react";
+import { UI } from "../../../constants/project";
 
 const SingleFieldCommonForm = (props) => {
   const theme = useTheme();
@@ -98,17 +99,17 @@ const SingleFieldCommonForm = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

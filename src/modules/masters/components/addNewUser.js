@@ -15,6 +15,8 @@ import {
   saveMastersData,
   updateMastersData,
 } from "../../../http/masterRequests";
+import { UI } from "../../../constants/project";
+
 
 const AddNewUser = (props) => {
   const [roles, SetRoles] = useState([]);
@@ -147,7 +149,7 @@ const AddNewUser = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -166,7 +168,7 @@ const AddNewUser = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -184,7 +186,7 @@ const AddNewUser = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -202,7 +204,7 @@ const AddNewUser = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -224,7 +226,7 @@ const AddNewUser = (props) => {
                 {...params}
                 required
                 label="Gender"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="gender"
               />
             )}
@@ -249,7 +251,7 @@ const AddNewUser = (props) => {
                 {...params}
                 required
                 label="ID Type"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="idType"
               />
             )}
@@ -270,7 +272,7 @@ const AddNewUser = (props) => {
             }}
             size="small"
             autoComplete="off"
-            variant="standard"
+            variant={UI.fieldVariant}
           />
         </FormControl>
         <FormControl sx={{ width: "100%", mt: 1 }}>
@@ -292,7 +294,7 @@ const AddNewUser = (props) => {
                 {...params}
                 required
                 label="Role"
-                variant="standard"
+                variant={UI.fieldVariant}
                 name="role"
               />
             )}
@@ -300,12 +302,12 @@ const AddNewUser = (props) => {
         </FormControl>
 
         {props?.dialogType === "view" ? (
-          <Alert severity="info" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="info" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: This is in view only mode!
           </Alert>
         ) : null}
         {props?.dialogType === "delete" ? (
-          <Alert severity="error" variant="standard" sx={{ mt: 2 }}>
+          <Alert severity="error" variant={UI.fieldVariant} sx={{ mt: 2 }}>
             Note: You are about to delete this record!
           </Alert>
         ) : null}

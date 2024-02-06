@@ -8,8 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import { Box, Typography } from "@mui/material";
 
-export default function CustomHeaderWithSearchBar(props) {
-  const hideSearchBar = props?.hideSearchBar || false;
+export default function CustomHeader(props) {
   const handleInputChange = (event) => {
     props.searchedInput(event.target.value);
   };
@@ -40,24 +39,8 @@ export default function CustomHeaderWithSearchBar(props) {
         {props?.headerText || ""}
       </Typography>
       <Box sx={{ flex: 1 }}></Box>
-      {!hideSearchBar && (
-        <>
-          <Divider sx={{ height: 30, m: 0.5 }} orientation="vertical" />
-          <InputBase
-            onChange={(event) => handleInputChange(event)}
-            sx={{ ml: 1, width: props?.seachBarWidth || "200px" }}
-            autoFocus
-            placeholder={props?.placeholder}
-            inputProps={{
-              "aria-label": props?.placeholder,
-            }}
-          />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-          {props?.btnHtml || null}
-        </>
-      )}
+      <Divider sx={{ height: 30, m: 0.5 }} orientation="vertical" />
+      {props?.btnHtml || null}
     </Paper>
   );
 }
