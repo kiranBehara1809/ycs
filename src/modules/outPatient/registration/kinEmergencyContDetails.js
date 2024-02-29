@@ -10,23 +10,25 @@ export default function KinEmergencyContDetails(props) {
   const [commonApiResults, setCommonApiResults] = useState({
     relationList: [],
   });
-  const { control, handleSubmit, setValue, getValues, trigger } = useForm({
+  const { control, handleSubmit, setValue, getValues, trigger, formState, watch } = useForm({
     mode: "all",
     reValidateMode: "onBlur",
   });
 
-  const handleOnSubmit = (evt) => {
-    console.log(evt);
-  };
-
   useEffect(() => {
     callInitialApi();
   }, []);
+
   useEffect(() => {
-    if (props.hasSubmitBtnClicked && props.hasSubmitBtnClicked === true) {
+    if (props.hasSubmitBtnClicked) {
       trigger();
     }
+    const subscription = watch((value, { name, type }) => {
+      props.kinEmergencyContDetails({ ...value });
+    });
+    return () => subscription.unsubscribe();
   }, [props.hasSubmitBtnClicked]);
+
   const callInitialApi = async () => {
     const relationApiResp =
       (await getMasterDataForDropdown(
@@ -41,7 +43,6 @@ export default function KinEmergencyContDetails(props) {
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit(handleOnSubmit)}
       sx={{ pb: 1 }}
     >
       <Grid container spacing={1} sx={{ mb: 0.5 }}>

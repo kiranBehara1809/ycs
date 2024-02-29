@@ -104,7 +104,7 @@ function EnhancedTableHead(props) {
           />
         </TableCell>
         {columns.map((headCell) => (
-          <Tooltip title={headCell.label?.length > 25 ? headCell.label: ""}>
+          <Tooltip title={headCell.label?.length > 25 ? headCell.label : ""}>
             <TableCell
               sx={{
                 minWidth: "150px !important",
@@ -356,7 +356,8 @@ export default function EnhancedTable(props) {
           maxWidth: "100% !important",
           overflowX: "auto",
           overflowY: "hidden",
-          "boxShadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px"
+          boxShadow:
+            "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
         }}
       >
         <EnhancedTableToolbar
@@ -400,14 +401,22 @@ export default function EnhancedTable(props) {
 
                     return (
                       <TableRow
-                        hover
                         onClick={(event) => handleClick(event, row._id)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
                         key={index}
                         selected={isItemSelected}
-                        sx={{ cursor: "pointer" }}
+                        sx={{
+                          cursor: "pointer",
+                          "&:hover": {
+                            background: (theme) =>
+                              alpha(
+                                theme.palette.primary.main,
+                                theme.palette.action.activatedOpacity
+                              ),
+                          },
+                        }}
                       >
                         <TableCell padding="checkbox">
                           <Checkbox

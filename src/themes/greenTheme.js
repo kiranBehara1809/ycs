@@ -31,7 +31,7 @@ const greenTheme = createTheme({
       styleOverrides: {
         asterisk: {
           color: "#FF0000",
-          fontSize : "20px",
+          fontSize: "20px",
         },
       },
     },
@@ -50,6 +50,38 @@ const greenTheme = createTheme({
           height: "30px",
         },
       },
+    },
+    MuiToggleButtonGroup: {
+      defaultProps: {
+        sx: {
+          height: "30px",
+          textTransform: "capitalize !important",
+        },
+      },
+      styleOverrides: {
+        root: {
+          ".Mui-selected:hover": {
+            background: "#0e6f5d !important",
+            color: "#ffffff !important",
+          },
+          ".Mui-selected": {
+            background: "#0e6f5d !important",
+            color: "#ffffff !important",
+          },
+        },
+      },
+    },
+    MuiToggleButton: {
+      defaultProps: {
+        sx: {
+          textTransform: "capitalize !important",
+        },
+      },
+    },
+  },
+  props: {
+    MuiTooltip: {
+      arrow: true,
     },
   },
 });

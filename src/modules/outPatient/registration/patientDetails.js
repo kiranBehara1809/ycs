@@ -39,19 +39,28 @@ export default function PatientDetails(props) {
     bloodGroupList: [],
     maritalStatusList: [],
   });
-  const { control, handleSubmit, setValue, getValues, clearErrors, setFocus, trigger } = useForm({
-    mode : 'all',
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    clearErrors,
+    setFocus,
+    trigger,
+    watch,
+  } = useForm({
+    mode: "all",
     reValidateMode: "onBlur",
   });
 
-  const handleOnSubmit = (evt) => {
-    console.log(evt);
-  };
-
   useEffect(() => {
-    if (props.hasSubmitBtnClicked && props.hasSubmitBtnClicked === true) {
+    if (props.hasSubmitBtnClicked) {
       trigger();
     }
+    const subscription = watch((value, { name, type }) => {
+      props.patientDetails({ ...value });
+    });
+    return () => subscription.unsubscribe();
   }, [props.hasSubmitBtnClicked]);
 
   useEffect(() => {
@@ -96,7 +105,6 @@ export default function PatientDetails(props) {
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit(handleOnSubmit)}
       sx={{ pb: 1 }}
     >
       <Grid container spacing={1} sx={{ mb: 0.5 }}>
@@ -133,16 +141,15 @@ export default function PatientDetails(props) {
                     }
                   />
                 )}
-                isOptionEqualToValue={(options) => options.id === value.objId}
                 onChange={(_, data) => {
                   if (
-                    data?.id === MISSES_OBJECT.id ||
-                    data?.id === MISS_OBJECT.id
+                    data?.id === MISSES_OBJECT.objId ||
+                    data?.id === MISS_OBJECT.objId
                   ) {
                     setValue("gender", FEMALE_OBJECT, {
                       shouldTouch: true,
                     });
-                  } else if (data?.id === MISTER_OBJECT.id) {
+                  } else if (data?.id === MISTER_OBJECT.objId) {
                     setValue("gender", MALE_OBJECT, {
                       shouldTouch: true,
                     });
@@ -150,8 +157,9 @@ export default function PatientDetails(props) {
                     setValue("gender", "");
                   }
                   if (data) onChange({ objId: data?.id, label: data?.label });
-                  setFocus('gender')
+                  setFocus("gender");
                 }}
+                isOptionEqualToValue={(options) => options.id === value.objId}
               />
             )}
           />
@@ -160,6 +168,7 @@ export default function PatientDetails(props) {
           <Controller
             control={control}
             name="gender"
+            defaultValue={null}
             rules={{
               required: true,
             }}
@@ -192,8 +201,8 @@ export default function PatientDetails(props) {
                 onChange={(_, data) => {
                   if (data) onChange({ objId: data?.id, label: data?.label });
                 }}
-                isOptionEqualToValue={(options) => options.id === value.objId}
                 value={value || null}
+                isOptionEqualToValue={(options) => options.id === value.objId}
               />
             )}
           />
@@ -207,7 +216,7 @@ export default function PatientDetails(props) {
               required: true,
             }}
             render={({
-              field: { ref, onChange, ...field },
+              field: { ref, onChange, value, ...field },
               fieldState: { error },
             }) => (
               <Autocomplete
@@ -233,6 +242,7 @@ export default function PatientDetails(props) {
                     }
                   />
                 )}
+                isOptionEqualToValue={(options) => options.id === value.objId}
               />
             )}
           />
@@ -396,6 +406,7 @@ export default function PatientDetails(props) {
           <Controller
             control={control}
             name="maritalStatus"
+            defaultValue={null}
             rules={{
               required: true,
             }}

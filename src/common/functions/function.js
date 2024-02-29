@@ -37,6 +37,16 @@ const showTokenExpiredAndLogout = () => {
   });
 };
 
+const showToastModal = (icon, text) => {
+  return Swal.fire({
+    icon: icon,
+    html: text,
+    showConfirmButton: true,
+    allowOutsideClick: false,
+    footer: "Developed by Kiran Behara",
+  });
+};
+
 const showConfirmToast = (icon, text) => {
   return Swal.fire({
     icon: icon,
@@ -77,11 +87,14 @@ const convertColumnName = (columnName, str) => {
   }
   if (typeof str === "object") {
     if (str) {
-      if (Array.isArray(str)){
-        return str.map(x => x.label).join(", ").toString()
-      }else{
+      if (Array.isArray(str)) {
+        return str
+          .map((x) => x.label)
+          .join(", ")
+          .toString();
+      } else {
         return str.label;
-      } 
+      }
     } else {
       return "-";
     }
@@ -132,7 +145,6 @@ const filterCustomTable = (attributes, rows, searchTerm) => {
   return [...new Set(list)];
 };
 
-
 function calculateAgeFromDob(birthdate) {
   var birthDate = new Date(birthdate);
   var currentDate = new Date();
@@ -168,7 +180,7 @@ function calculateAgeFromDob(birthdate) {
 
 const calculateAge = (birthdate) => {
   const birthdateObj = new Date(birthdate);
-  if(birthdateObj === "Invalid Date"){
+  if (birthdateObj === "Invalid Date") {
     return {
       currentAgeStr: ``,
     };
@@ -193,10 +205,36 @@ const calculateAge = (birthdate) => {
   };
 };
 
+function calculateBMI(weight, height) {
+  // weight in KG
+  //console.log(`BMI: ${bmi.toFixed(2)}`);
+  // Convert height from centimeters to meters
+  const heightInMeters = height / 100;
+
+  // Calculate BMI
+  const bmi = weight / (heightInMeters * heightInMeters);
+  
+  let category = "";
+  if (bmi < 18.5) {
+    category = "Underweight";
+  } else if (bmi >= 18.5 && bmi <= 24.9) {
+    category = "Normal weight";
+  } else if (bmi >= 25.0 && bmi <= 29.9) {
+    category = "Overweight";
+  } else {
+    category = "Obesity";
+  }
+  return {
+    bmiScore: bmi.toFixed(2),
+    bmiCategory: category,
+  };
+}
+
 export {
   addBaseUrl,
   showBasicToast,
   showConfirmToast,
+  showToastModal,
   convertCamelCaseToTitleText,
   convertColumnName,
   getTableColumnNames,
@@ -204,4 +242,5 @@ export {
   showTokenExpiredAndLogout,
   calculateAgeFromDob,
   calculateAge,
+  calculateBMI,
 };

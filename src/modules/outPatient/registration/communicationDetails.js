@@ -12,24 +12,26 @@ export default function CommunicationDetails(props) {
     stateList: [],
     countryList: [],
   });
-  const { control, handleSubmit, setValue, getValues, trigger, setFocus } =
+  const { control, handleSubmit, setValue, getValues, trigger, setFocus,formState, watch } =
     useForm({
       mode: "onChange",
       reValidateMode: "onBlur",
     });
 
-  const handleOnSubmit = (evt) => {
-    console.log(evt);
-  };
-
   useEffect(() => {
     callInitialApi();
   }, []);
+
   useEffect(() => {
-    if (props.hasSubmitBtnClicked && props.hasSubmitBtnClicked === true) {
+    if (props.hasSubmitBtnClicked) {
       trigger();
     }
+    const subscription = watch((value, { name, type }) => {
+      props.communicationDetails({ ...value });
+    });
+    return () => subscription.unsubscribe();
   }, [props.hasSubmitBtnClicked]);
+
   const callInitialApi = async () => {
     const countryApiResp =
       (await getMasterDataForDropdown(
@@ -76,7 +78,6 @@ export default function CommunicationDetails(props) {
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit(handleOnSubmit)}
       sx={{ pb: 1 }}
     >
       <Grid container spacing={1} sx={{ mb: 0.5 }}>
@@ -88,7 +89,7 @@ export default function CommunicationDetails(props) {
             rules={{
               required: true,
               pattern: REGEX.TEXT_REGEX.TEXT_WITH_ALL,
-              maxLength: 50,
+              maxLength: 200,
             }}
             render={({ field, fieldState: { error } }) => (
               <TextField
@@ -158,6 +159,7 @@ export default function CommunicationDetails(props) {
           <Controller
             control={control}
             name="state"
+            defaultValue={null}
             rules={{
               required: true,
             }}

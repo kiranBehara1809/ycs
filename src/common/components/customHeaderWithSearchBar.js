@@ -33,6 +33,8 @@ export default function CustomHeaderWithSearchBar(props) {
         alignItems: "center",
         justifyContent: "space-between",
         maxWidth: "100% !important",
+        border: "0.015px solid lightgray",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       }}
     >
       {props?.headerIcon || null}
@@ -52,7 +54,17 @@ export default function CustomHeaderWithSearchBar(props) {
               "aria-label": props?.placeholder,
             }}
           />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+          <IconButton
+            type="button"
+            sx={{
+              p: "8px",
+              mb: 1,
+              mr: 1,
+              mt: 0.5,
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            }}
+            aria-label="search"
+          >
             <SearchIcon />
           </IconButton>
           {props?.btnHtml || null}
