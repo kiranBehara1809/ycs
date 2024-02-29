@@ -43,6 +43,16 @@ import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { ImProfile } from "react-icons/im";
 import { TbError404 } from "react-icons/tb";
 import { GiMoneyStack } from "react-icons/gi";
+import { HiUserAdd } from "react-icons/hi";
+import { SlGrid } from "react-icons/sl";
+import { LuTable } from "react-icons/lu";
+import { TbFilterSearch } from "react-icons/tb";
+import { IoIosEye } from "react-icons/io";
+
+import { IoPencil } from "react-icons/io5";
+import { FaCheckCircle } from "react-icons/fa";
+import { MdAssignmentAdd } from "react-icons/md";
+
 
 
 
@@ -130,6 +140,14 @@ const ACC_POPOVER_LOGOUT_ICON = (
 const ADDRESS_ICON = <FaAddressCard className="reactIconsColor" />;
 const USER_ICON = <FaUser className="reactIconsColor" />;
 const MONEY_STACK = <GiMoneyStack className="reactIconsColor" />;
+const ADD_USER_ICON = <HiUserAdd className="reactIconsColor" />;
+const GRID_ICON = <SlGrid className="reactIconsColor" />;
+const TABLE_ICON = <LuTable className="reactIconsColor" />;
+const FILTER_ICON = <TbFilterSearch className="reactIconsColor" />;
+const VIEW_ICON = <IoIosEye className="reactIconsColor" />;
+const EDIT_ICON = <IoPencil className="reactIconsColor" />;
+const CIRCLE_CHECK_ICON = <FaCheckCircle className="reactIconsColor" />;
+const ADD_VITALS_ICON = <MdAssignmentAdd className="reactIconsColor" />;
 
 //------------------ common icons ---------------
 
@@ -176,4 +194,12 @@ export {
   ADDRESS_ICON,
   USER_ICON,
   MONEY_STACK,
+  ADD_USER_ICON,
+  GRID_ICON,
+  TABLE_ICON,
+  FILTER_ICON,
+  VIEW_ICON,
+  EDIT_ICON,
+  CIRCLE_CHECK_ICON,
+  ADD_VITALS_ICON,
 };

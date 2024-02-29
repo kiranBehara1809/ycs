@@ -10,15 +10,17 @@ import { blackTheme } from "./themes/blackTheme";
 import { blueTheme } from "./themes/bluetheme";
 import { greyTheme } from "./themes/greyTheme";
 import { sunBurstOrange } from "./themes/sunburstOrange";
+import { PROJECT_INFO } from "./constants/project";
 
 function App() {
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty("--reacIconsColor", blackTheme.palette.primary.main);
+    root.style.setProperty("--reacIconsColor", blueTheme.palette.primary.main);
+    document.title = PROJECT_INFO.shortName;
   }, []);
   return (
     <>
-      <ThemeProvider theme={blackTheme}>
+      <ThemeProvider theme={blueTheme}>
         <CssBaseline />
         <BrowserRouter basename="/">
           <HelmetProvider>

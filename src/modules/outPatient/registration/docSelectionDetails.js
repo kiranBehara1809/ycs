@@ -18,24 +18,30 @@ export default function DocSelectionDetails(props) {
   const [commonApiResults, setCommonApiResults] = useState({
     doctorsList: [],
   });
-  const { control, handleSubmit, setValue, getValues, trigger, setFocus } =
-    useForm({
-      mode: "onChange",
-      reValidateMode: "onBlur",
-    });
-
-  const handleOnSubmit = (evt) => {
-    console.log(evt);
-  };
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    trigger,
+    setFocus,
+    formState,
+    watch,
+  } = useForm({
+    mode: "onChange",
+    reValidateMode: "onBlur",
+  });
 
   useEffect(() => {
     callInitialApi();
   }, []);
 
   useEffect(() => {
-    if (props.hasSubmitBtnClicked && props.hasSubmitBtnClicked === true) {
-      trigger();
-    }
+    if (props.hasSubmitBtnClicked) trigger();
+    const subscription = watch((value, { name, type }) => {
+      props.docSelectionDetails({ ...value });
+    });
+    return () => subscription.unsubscribe();
   }, [props.hasSubmitBtnClicked]);
 
   const callInitialApi = async () => {
@@ -48,11 +54,7 @@ export default function DocSelectionDetails(props) {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(handleOnSubmit)}
-      sx={{ pb: 1 }}
-    >
+    <Box component="form" sx={{ pb: 1 }}>
       <Grid container spacing={1} sx={{ mb: 0.5 }}>
         <Grid item xs={4}>
           <Controller
