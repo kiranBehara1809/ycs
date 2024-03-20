@@ -52,6 +52,7 @@ import { IoIosEye } from "react-icons/io";
 import { IoPencil } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
+import { FaPalette } from "react-icons/fa6";
 
 
 
@@ -148,6 +149,7 @@ const VIEW_ICON = <IoIosEye className="reactIconsColor" />;
 const EDIT_ICON = <IoPencil className="reactIconsColor" />;
 const CIRCLE_CHECK_ICON = <FaCheckCircle className="reactIconsColor" />;
 const ADD_VITALS_ICON = <MdAssignmentAdd className="reactIconsColor" />;
+const PALETTE_ICON = <FaPalette className="reactIconsColor" />;
 
 //------------------ common icons ---------------
 
@@ -202,4 +204,5 @@ export {
   EDIT_ICON,
   CIRCLE_CHECK_ICON,
   ADD_VITALS_ICON,
+  PALETTE_ICON,
 };

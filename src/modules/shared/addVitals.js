@@ -11,13 +11,29 @@ import React, { useEffect, useState } from "react";
 import CustomDialogHeader from "../../common/components/customDialogHeader";
 import { ADD_VITALS_ICON, USER_ICON } from "../../constants/icons";
 import { Controller, useForm } from "react-hook-form";
-import * as REGEX from '../../constants/regex';
+import * as REGEX from "../../constants/regex";
 import { UI } from "../../constants/project";
 
 const helperTexts = {
   bloodPressure: {
     required: "Blood Pressure is Required",
     pattern: "Invalid data entered, please check",
+  },
+  bodyTemperature: {
+    required: "Body Temperature is Required",
+    pattern: "Invalid data entered, please check",
+    maxLength: "Max Length Exceeded",
+  },
+  pulseRate: {
+    required: "Pulse Rate is Required",
+    pattern: "Invalid data entered, please check",
+    maxLength: "Max Length Exceeded",
+  },
+  weight: {
+    required: "Weight is Required",
+    pattern: "Invalid data entered, please check",
+    maxLength: "Max Length Exceeded",
+    max: "Max value exceeded",
   },
 };
 
@@ -42,17 +58,18 @@ const AddVitals = (props) => {
     reValidateMode: "onBlur",
   });
 
-  useEffect(() => {
-    if (props.hasSubmitBtnClicked) {
-      trigger();
-    }
-    const subscription = watch((value, { name, type }) => {
-      props.kinEmergencyContDetails({ ...value });
-    });
-    return () => subscription.unsubscribe();
-  }, [props.hasSubmitBtnClicked]);
+  // useEffect(() => {
+  //   if (props.hasSubmitBtnClicked) {
+  //     trigger();
+  //   }
+  //   const subscription = watch((value, { name, type }) => {
+  //     props.kinEmergencyContDetails({ ...value });
+  //   });
+  //   return () => subscription.unsubscribe();
+  // }, [props.hasSubmitBtnClicked]);
+
   const closeDialog = () => {
-    props.closePatientViewer();
+    props.closeAddVitals();
     setOpen(false);
   };
   return (
@@ -159,11 +176,123 @@ const AddVitals = (props) => {
                         autoComplete="off"
                         label="Blood Pressure"
                         required
-                        placeholder={'120/80'}
+                        placeholder={"120/80"}
                         error={error !== undefined}
                         helperText={
-                          error ? helperTexts.bloodPressure[error.type] : ""
+                          error
+                            ? helperTexts.bloodPressure[error.type]
+                            : "Normal : 120/80"
                         }
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    control={control}
+                    name="bodyTemperature"
+                    defaultValue=""
+                    rules={{
+                      required: true,
+                      maxLength: 5,
+                      pattern: REGEX.TEXT_REGEX.NUMBER_ONLY,
+                    }}
+                    render={({ field, fieldState: { error } }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        required
+                        variant={UI.fieldVariant}
+                        fullWidth
+                        autoComplete="off"
+                        label="Body Temperature"
+                        placeholder={"98.6 F"}
+                        error={error !== undefined}
+                        helperText={
+                          error
+                            ? helperTexts.bodyTemperature[error.type]
+                            : "Nomral : 98.6F"
+                        }
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    control={control}
+                    name="pulseRate"
+                    defaultValue=""
+                    rules={{
+                      required: true,
+                      pattern: REGEX.TEXT_REGEX.NUMBER_ONLY,
+                      maxLength: 5,
+                    }}
+                    render={({ field, fieldState: { error } }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        required
+                        variant={UI.fieldVariant}
+                        fullWidth
+                        autoComplete="off"
+                        label="Pulse Rate"
+                        placeholder={"100 Bpm"}
+                        error={error !== undefined}
+                        helperText={
+                          error ? helperTexts.pulseRate[error.type] : "Normal : 70-100 BPM"
+                        }
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    control={control}
+                    name="weight"
+                    defaultValue=""
+                    rules={{
+                      required: true,
+                      maxLength: 3,
+                      pattern: REGEX.TEXT_REGEX.NUMBER_ONLY,
+                      max: 300,
+                    }}
+                    render={({ field, fieldState: { error } }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        required
+                        variant={UI.fieldVariant}
+                        fullWidth
+                        autoComplete="off"
+                        label={"Weight"}
+                        placeholder={"65KG"}
+                        error={error !== undefined}
+                        helperText={
+                          error ? helperTexts.weight[error.type] : "In KG's"
+                        }
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    control={control}
+                    name="height"
+                    defaultValue=""
+                    rules={{
+                      maxLength: 5,
+                      pattern: REGEX.TEXT_REGEX.NUMBER_ONLY,
+                    }}
+                    render={({ field, fieldState: { error } }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        variant={UI.fieldVariant}
+                        fullWidth
+                        autoComplete="off"
+                        label="Height"
+                        placeholder={"170"}
+                        helperText={"In CM"}
                       />
                     )}
                   />

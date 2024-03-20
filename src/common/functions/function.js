@@ -229,7 +229,11 @@ function calculateBMI(weight, height) {
     bmiCategory: category,
   };
 }
-
+function toTitleCase(str) {
+  return str.replace(/\b\w/g, function (match) {
+    return match.toUpperCase();
+  });
+}
 export {
   addBaseUrl,
   showBasicToast,
@@ -243,4 +247,5 @@ export {
   calculateAgeFromDob,
   calculateAge,
   calculateBMI,
+  toTitleCase,
 };

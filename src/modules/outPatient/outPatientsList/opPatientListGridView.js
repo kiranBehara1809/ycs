@@ -55,7 +55,7 @@ const OpListGridView = (props) => {
       {selectedPatient.type === "addVitals" && (
         <AddVitals
           selectedPatient={selectedPatient.data}
-          closePatientViewer={() =>
+          closeAddVitals={() =>
             setSelectedPatient({
               type: "",
               data: null,
