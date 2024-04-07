@@ -4,14 +4,14 @@ const defaultGeneralSettings = {
   fontSize: 12,
   fontFamily: "sans-serif",
 };
-export const blackTheme = createTheme({
+export const rosyPinkTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#4C4E56",
+      main: "#C25E8F",
     },
     secondary: {
-      main: "#6A6775",
+      main: "#F9F871",
     },
     error: {
       main: "#da1111",
@@ -60,11 +60,11 @@ export const blackTheme = createTheme({
       styleOverrides: {
         root: {
           ".Mui-selected:hover": {
-            background: "#4C4E56 !important",
+            background: "#C25E8F !important",
             color: "#ffffff !important",
           },
           ".Mui-selected": {
-            background: "#4C4E56 !important",
+            background: "#C25E8F !important",
             color: "#ffffff !important",
           },
         },

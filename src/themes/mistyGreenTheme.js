@@ -4,14 +4,14 @@ const defaultGeneralSettings = {
   fontSize: 12,
   fontFamily: "sans-serif",
 };
-export const blackTheme = createTheme({
+export const mistyGreenTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#4C4E56",
+      main: "#206371",
     },
     secondary: {
-      main: "#6A6775",
+      main: "#2F4858",
     },
     error: {
       main: "#da1111",
@@ -60,11 +60,11 @@ export const blackTheme = createTheme({
       styleOverrides: {
         root: {
           ".Mui-selected:hover": {
-            background: "#4C4E56 !important",
+            background: "#206371 !important",
             color: "#ffffff !important",
           },
           ".Mui-selected": {
-            background: "#4C4E56 !important",
+            background: "#206371 !important",
             color: "#ffffff !important",
           },
         },

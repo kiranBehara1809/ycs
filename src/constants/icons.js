@@ -53,10 +53,9 @@ import { IoPencil } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
 import { FaPalette } from "react-icons/fa6";
-
-
-
-
+import { ImFontSize } from "react-icons/im";
+import { FaDev } from "react-icons/fa";
+import { TbInfoTriangleFilled } from "react-icons/tb";
 
 const SETTINGS_ICON = (
   <SettingsIcon fontSize="large" sx={{ color: "primary.main" }} />
@@ -86,7 +85,9 @@ const MARITAL_STATUS_ICON = <BiMaleFemale className="reactIconsColor" />;
 const STATE_ICON = (
   <HolidayVillageIcon fontSize="large" sx={{ color: "primary.main" }} />
 );
-const COUNTRY_ICON = <FlagIcon fontSize="large" sx={{ color: "primary.main" }} />;
+const COUNTRY_ICON = (
+  <FlagIcon fontSize="large" sx={{ color: "primary.main" }} />
+);
 const SALUTATION_ICON = <FaHandshake className="reactIconsColor" />;
 const CLOSE_ICON = (
   <CancelIcon fontSize="medium" sx={{ color: "error.main" }} />
@@ -120,9 +121,10 @@ const IN_PATIENT_ICON = (
   </>
 );
 
-const  USERS_ICON = <FaUsers className="reactIconsTwoIcons"  />
+const USERS_ICON = <FaUsers className="reactIconsTwoIcons" />;
 const ROLES_ICON = <FaUsersCog className="reactIconsTwoIcons" />;
 const PAGE_NOT_FOUND_ICON = <TbError404 className="pageNotFoundIcon" />;
+const UNDER_DEV_ICON = <TbInfoTriangleFilled className="pageNotFoundIcon" />;
 
 const ACC_POPOVER_PROFILE_ICON = (
   <ImProfile className="reactIconsColorMedium" />
@@ -150,6 +152,7 @@ const EDIT_ICON = <IoPencil className="reactIconsColor" />;
 const CIRCLE_CHECK_ICON = <FaCheckCircle className="reactIconsColor" />;
 const ADD_VITALS_ICON = <MdAssignmentAdd className="reactIconsColor" />;
 const PALETTE_ICON = <FaPalette className="reactIconsColor" />;
+const FONT_SIZE_ICON = <ImFontSize className="reactIconsColor" />;
 
 //------------------ common icons ---------------
 
@@ -205,4 +208,6 @@ export {
   CIRCLE_CHECK_ICON,
   ADD_VITALS_ICON,
   PALETTE_ICON,
+  FONT_SIZE_ICON,
+  UNDER_DEV_ICON,
 };
