@@ -4,23 +4,83 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Routings from "./routings";
 import { HelmetProvider } from "react-helmet-async";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import greenTheme from "./themes/greenTheme";
 import { blackTheme } from "./themes/blackTheme";
 import { blueTheme } from "./themes/bluetheme";
+import { mistyGreenTheme } from "./themes/mistyGreenTheme";
+import { rosyPinkTheme } from "./themes/rosyPinkTheme";
 import { greyTheme } from "./themes/greyTheme";
 import { sunBurstOrange } from "./themes/sunburstOrange";
 import { PROJECT_INFO } from "./constants/project";
+import { useSelector } from "react-redux";
 
 function App() {
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+  const [ct, setCt] = useState(currentUser?.theme || blueTheme);
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty("--reacIconsColor", blueTheme.palette.primary.main);
     document.title = PROJECT_INFO.shortName;
-  }, []);
+    if (currentUser === null) {
+      root.style.setProperty(
+        "--reacIconsColor",
+        blueTheme.palette.primary.main
+      );
+      setCt(blueTheme);
+    }
+    if (currentUser?.theme === "greenTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        greenTheme.palette.primary.main
+      );
+      setCt(greenTheme);
+    }
+    if (currentUser?.theme === "mistyGreenTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        mistyGreenTheme.palette.primary.main
+      );
+      setCt(mistyGreenTheme);
+    }
+    if (currentUser?.theme === "blueTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        blueTheme.palette.primary.main
+      );
+      setCt(blueTheme);
+    }
+    if (currentUser?.theme === "rosyPinkTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        rosyPinkTheme.palette.primary.main
+      );
+      setCt(rosyPinkTheme);
+    }
+    if (currentUser?.theme === "blackTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        blackTheme.palette.primary.main
+      );
+      setCt(blackTheme);
+    }
+    if (currentUser?.theme === "greyTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        greyTheme.palette.primary.main
+      );
+      setCt(greyTheme);
+    }
+    if (currentUser?.theme === "sunBurstOrange") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        sunBurstOrange.palette.primary.main
+      );
+      setCt(sunBurstOrange);
+    }
+  }, [currentUser]);
   return (
     <>
-      <ThemeProvider theme={blueTheme}>
+      <ThemeProvider theme={ct || blueTheme}>
         <CssBaseline />
         <BrowserRouter basename="/">
           <HelmetProvider>

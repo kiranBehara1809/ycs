@@ -31,11 +31,13 @@ import {
 import { getAllPatients } from "../../../http/opRequests";
 import OpPatientListTableView from "./opPatientListTableView";
 import OpListGridView from "./opPatientListGridView";
+import OpFiltersNew from "./opFilterNew";
 
 const OutPatientsListHome = () => {
   const navigate = useNavigate();
   const [toggleListView, setToggleListView] = useState("table");
   const [opList, setOpList] = useState([]);
+  const [openOpFilter, setOpenOpFilter] = useState(false);
   const [dupOpList, setDupOpList] = useState([]);
 
   useEffect(() => {
@@ -104,6 +106,7 @@ const OutPatientsListHome = () => {
 
   return (
     <>
+      {/* <OpFilter openOpFilter={openOpFilter} closeOpFilter={() => setOpenOpFilter(false)} /> */}
       <CustomHeaderWithSearchBar
         headerIcon={USERS_ICON}
         headerText={"Out Patients"}
@@ -124,9 +127,9 @@ const OutPatientsListHome = () => {
               <ToggleButton value="table">Table</ToggleButton>
               <ToggleButton value="grid">Grid</ToggleButton>
             </ToggleButtonGroup>
-            <Tooltip arrow title={`Filters`}>
+            {/* <Tooltip arrow title={`Filters`}>
               <Button
-                onClick={handleRegisterNewPatientClick}
+                onClick={() => setOpenOpFilter(true)}
                 variant="contained"
                 size="small"
                 className="button registerNewButton"
@@ -134,7 +137,9 @@ const OutPatientsListHome = () => {
               >
                 Filters
               </Button>
-            </Tooltip>
+              <OpFilter />
+            </Tooltip> */}
+            <OpFiltersNew />
             <Tooltip arrow title={`Register New Patient`}>
               <Button
                 onClick={handleRegisterNewPatientClick}

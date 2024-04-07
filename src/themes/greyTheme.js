@@ -8,10 +8,10 @@ export const greyTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#616161",
+      main: "#818895",
     },
     secondary: {
-      main: "#c0ca33",
+      main: "#60DAB9",
     },
     error: {
       main: "#da1111",
@@ -47,6 +47,33 @@ export const greyTheme = createTheme({
         sx: {
           textTransform: "capitalize !important",
           height: "30px",
+        },
+      },
+    },
+    MuiToggleButtonGroup: {
+      defaultProps: {
+        sx: {
+          height: "30px",
+          textTransform: "capitalize !important",
+        },
+      },
+      styleOverrides: {
+        root: {
+          ".Mui-selected:hover": {
+            background: "#818895 !important",
+            color: "#ffffff !important",
+          },
+          ".Mui-selected": {
+            background: "#818895 !important",
+            color: "#ffffff !important",
+          },
+        },
+      },
+    },
+    MuiToggleButton: {
+      defaultProps: {
+        sx: {
+          textTransform: "capitalize !important",
         },
       },
     },
