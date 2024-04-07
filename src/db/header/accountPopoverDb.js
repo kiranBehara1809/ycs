@@ -1,27 +1,36 @@
-import InfoIcon from '@mui/icons-material/Info';
-import SettingsIcon from "@mui/icons-material/Settings";
-import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import {
+  ACC_POPOVER_INFO_ICON,
+  ACC_POPOVER_LOGOUT_ICON,
+  ACC_POPOVER_PROFILE_ICON,
+  SETTINGS_ICON,
+  ACC_POPOVER_SETTINGS_ICON,
+} from "../../constants/icons";
+
 
 const ACCOUNT_POPOVER_LIST = [
+  {
+    name: "Profile",
+    url: null,
+    tooltip: "",
+    icon: ACC_POPOVER_PROFILE_ICON,
+  },
   {
     name: "About",
     url: "about",
     tooltip: "",
-    icon: <InfoIcon fontSize="medium" sx={{ color: "primary.main" }} />,
+    icon: ACC_POPOVER_INFO_ICON,
   },
   {
     name: "Settings",
     url: "settings",
     tooltip: "",
-    icon: <SettingsIcon fontSize="medium" sx={{ color: "primary.main" }} />,
+    icon: ACC_POPOVER_SETTINGS_ICON,
   },
   {
     name: "Logout",
     url: "/login",
     tooltip: "",
-    icon: (
-      <PowerSettingsNewIcon fontSize="medium" sx={{ color: "primary.main" }} />
-    ),
+    icon: ACC_POPOVER_LOGOUT_ICON,
   },
 ];
 

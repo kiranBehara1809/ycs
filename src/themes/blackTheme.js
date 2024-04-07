@@ -8,13 +8,17 @@ export const blackTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#0c0c0c",
+      main: "#4C4E56",
     },
     secondary: {
-      main: "#ffd600",
+      main: "#6A6775",
     },
     error: {
       main: "#da1111",
+    },
+    background: {
+      default: "#f5f2f2",
+      paper: "#f5f2f2",
     },
   },
   typography: {
@@ -22,6 +26,14 @@ export const blackTheme = createTheme({
     fontSize: defaultGeneralSettings.fontSize,
   },
   components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        asterisk: {
+          color: "#FF0000",
+          fontSize: "20px",
+        },
+      },
+    },
     MuiTabs: {
       styleOverrides: {
         root: {
@@ -35,6 +47,33 @@ export const blackTheme = createTheme({
         sx: {
           textTransform: "capitalize !important",
           height: "30px",
+        },
+      },
+    },
+    MuiToggleButtonGroup: {
+      defaultProps: {
+        sx: {
+          height: "30px",
+          textTransform: "capitalize !important",
+        },
+      },
+      styleOverrides: {
+        root: {
+          ".Mui-selected:hover": {
+            background: "#4C4E56 !important",
+            color: "#ffffff !important",
+          },
+          ".Mui-selected": {
+            background: "#4C4E56 !important",
+            color: "#ffffff !important",
+          },
+        },
+      },
+    },
+    MuiToggleButton: {
+      defaultProps: {
+        sx: {
+          textTransform: "capitalize !important",
         },
       },
     },

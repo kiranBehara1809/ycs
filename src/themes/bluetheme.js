@@ -26,6 +26,14 @@ export const blueTheme = createTheme({
     fontSize: defaultGeneralSettings.fontSize,
   },
   components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        asterisk: {
+          color: "#FF0000",
+          fontSize: "20px",
+        },
+      },
+    },
     MuiTabs: {
       styleOverrides: {
         root: {
@@ -39,6 +47,33 @@ export const blueTheme = createTheme({
         sx: {
           textTransform: "capitalize !important",
           height: "30px",
+        },
+      },
+    },
+    MuiToggleButtonGroup: {
+      defaultProps: {
+        sx: {
+          height: "30px",
+          textTransform: "capitalize !important",
+        },
+      },
+      styleOverrides: {
+        root: {
+          ".Mui-selected:hover": {
+            background: "#0277bd !important",
+            color : '#ffffff !important'
+          },
+          ".Mui-selected": {
+            background: "#0277bd !important",
+            color : '#ffffff !important'
+          },
+        },
+      },
+    },
+    MuiToggleButton: {
+      defaultProps: {
+        sx: {
+          textTransform: "capitalize !important",
         },
       },
     },

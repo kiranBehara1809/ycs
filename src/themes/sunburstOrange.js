@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 
 const defaultGeneralSettings = {
-  fontSize: 18,
+  fontSize: 12,
   fontFamily: "sans-serif",
 };
 export const sunBurstOrange = createTheme({
@@ -26,6 +26,14 @@ export const sunBurstOrange = createTheme({
     fontSize: defaultGeneralSettings.fontSize,
   },
   components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        asterisk: {
+          color: "#FF0000",
+          fontSize: "20px",
+        },
+      },
+    },
     MuiTabs: {
       styleOverrides: {
         root: {

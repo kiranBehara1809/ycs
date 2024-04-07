@@ -27,6 +27,14 @@ const greenTheme = createTheme({
     fontSize: defaultGeneralSettings.fontSize,
   },
   components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        asterisk: {
+          color: "#FF0000",
+          fontSize: "20px",
+        },
+      },
+    },
     MuiTabs: {
       styleOverrides: {
         root: {
@@ -42,6 +50,38 @@ const greenTheme = createTheme({
           height: "30px",
         },
       },
+    },
+    MuiToggleButtonGroup: {
+      defaultProps: {
+        sx: {
+          height: "30px",
+          textTransform: "capitalize !important",
+        },
+      },
+      styleOverrides: {
+        root: {
+          ".Mui-selected:hover": {
+            background: "#0e6f5d !important",
+            color: "#ffffff !important",
+          },
+          ".Mui-selected": {
+            background: "#0e6f5d !important",
+            color: "#ffffff !important",
+          },
+        },
+      },
+    },
+    MuiToggleButton: {
+      defaultProps: {
+        sx: {
+          textTransform: "capitalize !important",
+        },
+      },
+    },
+  },
+  props: {
+    MuiTooltip: {
+      arrow: true,
     },
   },
 });
