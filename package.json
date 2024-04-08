@@ -1,6 +1,7 @@
 {
   "name": "management",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@emotion/cache": "^11.9.3",
