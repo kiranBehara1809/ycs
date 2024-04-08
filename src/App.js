@@ -11,22 +11,24 @@ import { blueTheme } from "./themes/bluetheme";
 import { mistyGreenTheme } from "./themes/mistyGreenTheme";
 import { rosyPinkTheme } from "./themes/rosyPinkTheme";
 import { greyTheme } from "./themes/greyTheme";
+import { defaultTheme } from "./themes/defaultTheme";
 import { sunBurstOrange } from "./themes/sunburstOrange";
+import { purpleTheme } from "./themes/purpleTheme";
 import { PROJECT_INFO } from "./constants/project";
 import { useSelector } from "react-redux";
 
 function App() {
   const currentUser = useSelector((state) => state.currentUser.currentUser);
-  const [ct, setCt] = useState(currentUser?.theme || blueTheme);
+  const [ct, setCt] = useState(currentUser?.theme || defaultTheme);
   useEffect(() => {
     const root = document.documentElement;
-    document.title = PROJECT_INFO.shortName;
+    document.title = PROJECT_INFO.name;
     if (currentUser === null) {
       root.style.setProperty(
         "--reacIconsColor",
-        blueTheme.palette.primary.main
+        defaultTheme.palette.primary.main
       );
-      setCt(blueTheme);
+      setCt(defaultTheme);
     }
     if (currentUser?.theme === "greenTheme") {
       root.style.setProperty(
@@ -34,6 +36,13 @@ function App() {
         greenTheme.palette.primary.main
       );
       setCt(greenTheme);
+    }
+    if (currentUser?.theme === "defaultTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        defaultTheme.palette.primary.main
+      );
+      setCt(defaultTheme);
     }
     if (currentUser?.theme === "mistyGreenTheme") {
       root.style.setProperty(
@@ -48,6 +57,13 @@ function App() {
         blueTheme.palette.primary.main
       );
       setCt(blueTheme);
+    }
+    if (currentUser?.theme === "purpleTheme") {
+      root.style.setProperty(
+        "--reacIconsColor",
+        purpleTheme.palette.primary.main
+      );
+      setCt(purpleTheme);
     }
     if (currentUser?.theme === "rosyPinkTheme") {
       root.style.setProperty(
@@ -80,7 +96,7 @@ function App() {
   }, [currentUser]);
   return (
     <>
-      <ThemeProvider theme={ct || blueTheme}>
+      <ThemeProvider theme={ct || defaultTheme}>
         <CssBaseline />
         <BrowserRouter basename="/">
           <HelmetProvider>

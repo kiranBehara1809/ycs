@@ -4,18 +4,25 @@ import { toTitleCase } from "../../common/functions/function";
 import { useSelector } from "react-redux";
 import store from "../../store";
 import { CURRENT_USER_ACTIONS } from "../../store/slices/currentUser";
-import { updateMastersData } from "../../http/masterRequests";
 
 const ThemeSwitcher = () => {
   const currentUser = useSelector((state) => state.currentUser.currentUser);
 
-  const themes = ["blue", "green", "grey", "orange"];
-
   const [themesNew, setThemesNew] = useState([
+    {
+      themeName: "defaultTheme",
+      hoverColor: "#d9733f",
+      selected: true,
+    },
     {
       themeName: "blueTheme",
       hoverColor: "#0277bd",
-      selected: true,
+      selected: false,
+    },
+    {
+      themeName: "purpleTheme",
+      hoverColor: "#660066",
+      selected: false,
     },
     {
       themeName: "greenTheme",
@@ -25,16 +32,6 @@ const ThemeSwitcher = () => {
     {
       themeName: "blackTheme",
       hoverColor: "#4C4E56",
-      selected: false,
-    },
-    {
-      themeName: "greyTheme",
-      hoverColor: "#818895",
-      selected: false,
-    },
-    {
-      themeName: "sunBurstOrange",
-      hoverColor: "#ff9800",
       selected: false,
     },
     {
@@ -50,32 +47,31 @@ const ThemeSwitcher = () => {
   ]);
 
   useEffect(() => {
-    setThemesNew((prev) => {
-      return prev.map((x) => {
-        return {
-          ...x,
-          selected: x.themeName === currentUser.theme ? true : false,
-        };
+    if (currentUser !== null) {
+      setThemesNew((prev) => {
+        return prev.map((x) => {
+          return {
+            ...x,
+            selected: x.themeName === currentUser.theme ? true : false,
+          };
+        });
       });
-    });
+    }
   }, [currentUser]);
 
   const handleChangeTheme = async (obj) => {
-    console.log(currentUser);
     store.dispatch(
       CURRENT_USER_ACTIONS.setCurrentUser({
-        ...currentUser,
         theme: obj.themeName,
       })
     );
-    const response = await updateMastersData(
-      `users/update/${currentUser?._id}`,
-      {
-        ...currentUser,
-        theme: obj.themeName,
-      }
-    );
-    console.log(response);
+    // const response = await updateMastersData(
+    //   `users/update/${currentUser?._id}`,
+    //   {
+    //     ...currentUser,
+    //     theme: obj.themeName,
+    //   }
+    // );
   };
 
   return (
@@ -97,7 +93,6 @@ const ThemeSwitcher = () => {
               justifyContent: "center",
               alignItems: "center",
               background: x.selected ? x.hoverColor : "",
-              color: x.selected ? "white" : "black",
               boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
               "&:hover": {
                 background: x.hoverColor,

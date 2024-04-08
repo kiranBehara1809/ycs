@@ -56,11 +56,15 @@ import { FaPalette } from "react-icons/fa6";
 import { ImFontSize } from "react-icons/im";
 import { FaDev } from "react-icons/fa";
 import { TbInfoTriangleFilled } from "react-icons/tb";
+import { FaSearch } from "react-icons/fa";
 
 const SETTINGS_ICON = (
   <SettingsIcon fontSize="large" sx={{ color: "primary.main" }} />
 );
 const HOME_ICON = <HomeIcon fontSize="large" sx={{ color: "primary.main" }} />;
+const SEARCH_PRODUCT_FUND_ICON = <FaSearch className="reactIconsColor" />;
+const SEARCH_ICON = <FaSearch className="reactIconsColor" />;
+
 const ADMIN_PANEL_ICON = (
   <AdminPanelSettingsIcon fontSize="large" sx={{ color: "primary.main" }} />
 );
@@ -210,4 +214,6 @@ export {
   PALETTE_ICON,
   FONT_SIZE_ICON,
   UNDER_DEV_ICON,
+  SEARCH_PRODUCT_FUND_ICON,
+  SEARCH_ICON
 };

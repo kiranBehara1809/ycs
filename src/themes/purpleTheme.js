@@ -4,21 +4,21 @@ const defaultGeneralSettings = {
   fontSize: 12,
   fontFamily: "sans-serif",
 };
-export const rosyPinkTheme = createTheme({
+export const purpleTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#C25E8F",
+      main: "#660066",
     },
     secondary: {
-      main: "#F9F871",
+      main: "#e64a19",
     },
     error: {
       main: "#da1111",
     },
     background: {
-      default: "#3a3035",
-      paper: "#3a3035",
+      default: "#f5f2f2",
+      paper: "#f5f2f2",
     },
   },
   typography: {
@@ -60,12 +60,12 @@ export const rosyPinkTheme = createTheme({
       styleOverrides: {
         root: {
           ".Mui-selected:hover": {
-            background: "#C25E8F !important",
-            color: "#ffffff !important",
+            background: "#660066 !important",
+            color : '#ffffff !important'
           },
           ".Mui-selected": {
-            background: "#C25E8F !important",
-            color: "#ffffff !important",
+            background: "#660066 !important",
+            color : '#ffffff !important'
           },
         },
       },

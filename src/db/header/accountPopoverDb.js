@@ -9,12 +9,6 @@ import {
 
 const ACCOUNT_POPOVER_LIST = [
   {
-    name: "Profile",
-    url: null,
-    tooltip: "",
-    icon: ACC_POPOVER_PROFILE_ICON,
-  },
-  {
     name: "About",
     url: "about",
     tooltip: "",
