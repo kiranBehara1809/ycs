@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/fantastic-lamp/static/css/main.9598b94b.css",
-    "main.js": "/fantastic-lamp/static/js/main.69cb0d89.js",
-    "static/js/787.e99a3353.chunk.js": "/fantastic-lamp/static/js/787.e99a3353.chunk.js",
-    "static/media/404.png": "/fantastic-lamp/static/media/404.19a01faaddcba524a829.png",
-    "static/media/logo.svg": "/fantastic-lamp/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/fantastic-lamp/index.html",
-    "main.9598b94b.css.map": "/fantastic-lamp/static/css/main.9598b94b.css.map",
-    "main.69cb0d89.js.map": "/fantastic-lamp/static/js/main.69cb0d89.js.map",
-    "787.e99a3353.chunk.js.map": "/fantastic-lamp/static/js/787.e99a3353.chunk.js.map"
+    "main.css": "/beta-insights/static/css/main.75bf5e69.css",
+    "main.js": "/beta-insights/static/js/main.9404f9f4.js",
+    "static/js/787.e99a3353.chunk.js": "/beta-insights/static/js/787.e99a3353.chunk.js",
+    "static/media/404.png": "/beta-insights/static/media/404.19a01faaddcba524a829.png",
+    "static/media/project-logo.png": "/beta-insights/static/media/project-logo.a7e720371a6707e4cd75.png",
+    "static/media/logo.svg": "/beta-insights/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/beta-insights/index.html",
+    "main.75bf5e69.css.map": "/beta-insights/static/css/main.75bf5e69.css.map",
+    "main.9404f9f4.js.map": "/beta-insights/static/js/main.9404f9f4.js.map",
+    "787.e99a3353.chunk.js.map": "/beta-insights/static/js/787.e99a3353.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9598b94b.css",
-    "static/js/main.69cb0d89.js"
+    "static/css/main.75bf5e69.css",
+    "static/js/main.9404f9f4.js"
   ]
 }
