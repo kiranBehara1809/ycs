@@ -4,11 +4,8 @@ import { BASE_ROUTE_PATH } from "./constants/project";
 import PageNotFound from "./common/components/pageNotFound";
 import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
-import CommonMasterHome from "./modules/masters/commonMasterHome";
-import DoctorMasterHome from "./modules/masters/doctorMasterHome";
-import OpRegnScreen from "./modules/outPatient/registration/opRegnScreen";
-import RolesAndUsersMasterHome from "./modules/masters/rolesAndUsersMasterHome";
-import OutPatientsListHome from "./modules/outPatient/outPatientsList/opPatientsListHome";
+import About from "./modules/loggedInUser/about";
+import UnderDevelopment from "./common/components/underDevelopment";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -34,44 +31,15 @@ export default function Routings() {
       children: [
         {
           path: "home",
-          element: <>ki</>,
-        },
-        {
-          path: "masters",
-          children: [
-            {
-              path: "common",
-              index: true,
-              element: <CommonMasterHome />,
-            },
-            {
-              path: "doctor",
-              element: <DoctorMasterHome />,
-            },
-            {
-              path: "rolesAndUsers",
-              element: <RolesAndUsersMasterHome />,
-            },
-          ],
-        },
-        {
-          path: "outpatient",
-          children: [
-            {
-              path: "registration",
-              index: true,
-              element: <OpRegnScreen />,
-            },
-            {
-              path: "opList",
-              index: true,
-              element: <OutPatientsListHome />,
-            },
-          ],
+          element: <UnderDevelopment />,
         },
         {
           path: "settings",
           element: <SettingsHome />,
+        },
+        {
+          path: "about",
+          element: <About />,
         },
         {
           path: "*",

@@ -7,6 +7,7 @@ const TEXT_REGEX = {
   MOBILE_NO: /^(\+91-|\+91|0)?[6-9]\d{9}$/,
   BLOOD_PRESSURE: /^(90|[1-8][0-9]|120)\/(60|[1-9][0-9]|1[0-1][0-9]|120)$/,
   NUMBER_ONLY: /\d+(?:\.\d+)?/,
+  EMAIL : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 };
 
 export { BLOOD_GROUP_REGEX, TEXT_REGEX };

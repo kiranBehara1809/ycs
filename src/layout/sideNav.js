@@ -22,6 +22,7 @@ import Header from "./header";
 import { addBaseUrl } from "../common/functions/function";
 import { Collapse, Tooltip } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { PROJECT_INFO } from "../constants/project";
 
 const drawerWidth = 240;
 
@@ -126,7 +127,7 @@ export default function SideNav() {
       setNestedOption((prev) => (prev === "collapse" ? "expand" : "collapse"));
     }
     if (option.url !== null) {
-      // handleDrawerClose();
+      handleDrawerClose();
       // clearCurrentOptionAndCloseNestedArr()
       navigate(addBaseUrl(option.url));
     }
@@ -159,24 +160,35 @@ export default function SideNav() {
             height: "45px !important",
           }}
         >
-          <IconButton
+          <img
+            src={PROJECT_INFO.logo}
+            width={35}
+            height={35}
+            onClick={handleDrawerOpen}
+            style={{
+              borderRadius: "50%",
+              cursor: "pointer",
+              marginLeft: "-15px",
+            }}
+          />
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
               marginRight: 1,
-              marginLeft: "-20px",
               ...(open && { display: "none" }),
             }}
           >
             <MenuIcon fontSize="large" />
-          </IconButton>
+          </IconButton> */}
           <Header />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} >
+      <Drawer variant="permanent" open={open}>
         <DrawerHeader sx={{ minHeight: "40px !important" }}>
+          <Typography variant="h6">{PROJECT_INFO.name}</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
