@@ -19,7 +19,7 @@ import {
   SETTINGS_ICON,
 } from "../../constants/icons";
 import ThemeSwitcher from "../shared/themeSwitcher";
-import UnderDevelopment from "../../common/components/underDevelopment";
+import UnderDev from "../../common/components/underDev";
 
 const SettingsHome = () => {
   const theme = useTheme();
@@ -134,7 +134,7 @@ const SettingsHome = () => {
 
         <Grid item xs={12} sm={7.5}>
           {selectedMenuCard === "THEME" && <ThemeSwitcher />}
-          {selectedMenuCard === "FONT_SIZE" && <UnderDevelopment />}
+          {selectedMenuCard === "FONT_SIZE" && <UnderDev />}
         </Grid>
       </Grid>
     </>
