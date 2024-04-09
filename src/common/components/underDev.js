@@ -33,7 +33,7 @@ const UnderDev = (props) => {
         >
           {UNDER_DEV_ICON}
           <Typography variant="h4" color={"primary.main"}>
-            Undev Development...!
+            Under Development...!
           </Typography>
         </Box>
       </Box>
