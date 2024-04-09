@@ -62,7 +62,7 @@ const Header = () => {
       showConfirmToast("warning", "Do you want to logout?").then(
         async (res) => {
           if (res.isConfirmed) {
-            showBasicToast("success", "Logout successfull");
+            showBasicToast("success", "Logout successful");
             navigate(option.url);
           }
         }
