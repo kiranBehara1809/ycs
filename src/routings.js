@@ -5,7 +5,7 @@ import PageNotFound from "./common/components/pageNotFound";
 import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
 import About from "./modules/loggedInUser/about";
-import UnderDevelopment from "./common/components/underDevelopment";
+import UnderDev from "./common/components/underDev";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -31,7 +31,7 @@ export default function Routings() {
       children: [
         {
           path: "home",
-          element: <UnderDevelopment />,
+          element: <UnderDev />,
         },
         {
           path: "settings",
