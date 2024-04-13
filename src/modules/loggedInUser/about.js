@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { PROJECT_INFO } from "../../constants/project";
 import { Grid, ListItemText } from "@mui/material";
+import CustomHeaderWithSearchBar from "../../common/components/customHeaderWithSearchBar";
+import { ACC_POPOVER_INFO_ICON } from "../../constants/icons";
 
 const About = () => {
   return (
     <>
+      <Grid container sx={{ mb: 1 }}>
+        <Grid item xs={12}>
+          <CustomHeaderWithSearchBar
+            hideSearchBar
+            headerText={"About"}
+            headerIcon={ACC_POPOVER_INFO_ICON}
+          />
+        </Grid>
+      </Grid>
+
       <Grid container>
         <Grid
           item

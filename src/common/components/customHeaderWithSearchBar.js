@@ -31,6 +31,7 @@ export default function CustomHeaderWithSearchBar(props) {
         mb: 1.7,
         display: "flex",
         alignItems: "center",
+        minHeight: "50px",
         justifyContent: "space-between",
         maxWidth: "100% !important",
         border: "0.015px solid lightgray",
