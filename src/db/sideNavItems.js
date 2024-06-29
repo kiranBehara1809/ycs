@@ -8,14 +8,14 @@ import {
 } from "../constants/icons";
 
 const SIDE_NAV_ITEMS = [
-  {
-    name: "Home",
-    url: "home",
-    key: "",
-    openInNewTab: false,
-    icon: HOME_ICON,
-    tooltip: "Home",
-  },
+  // {
+  //   name: "Home",
+  //   url: "home",
+  //   key: "",
+  //   openInNewTab: false,
+  //   icon: HOME_ICON,
+  //   tooltip: "Home",
+  // },
   {
     name: "Fund Analysis",
     url: null,
