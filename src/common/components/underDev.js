@@ -16,8 +16,8 @@ const UnderDev = (props) => {
       >
         <Box
           sx={{
-            height: "300px",
-            width: "400px",
+            height: "200px",
+            width: "300px",
             background: (theme) =>
               alpha(
                 theme.palette.primary.main,
@@ -32,7 +32,7 @@ const UnderDev = (props) => {
           }}
         >
           {UNDER_DEV_ICON}
-          <Typography variant="h4" color={"primary.main"}>
+          <Typography variant="h6" color={"primary.main"}>
             Under Development...!
           </Typography>
         </Box>

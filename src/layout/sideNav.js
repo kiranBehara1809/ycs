@@ -16,7 +16,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 import { SIDE_NAV_ITEMS } from "../db/sideNavItems";
 import Header from "./header";
 import { addBaseUrl } from "../common/functions/function";
@@ -96,9 +96,10 @@ const Drawer = styled(MuiDrawer, {
 export default function SideNav() {
   const navigate = useNavigate();
   const theme = useTheme();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [nestedOption, setNestedOption] = useState("collapse");
-  const [currentOption, setCurrentOption] = useState(null);
+  const [currentOption, setCurrentOption] = useState(SIDE_NAV_ITEMS[0]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,6 +115,10 @@ export default function SideNav() {
     }
   }, [open]);
 
+  useEffect(() => {
+    setCurrentOption({ url: location.pathname.split("/")[2] });
+  }, []);
+
   const clearCurrentOptionAndCloseNestedArr = () => {
     // setCurrentOption(null);
     // setNestedOption((prev) => prev === "collapse" ? "expand" : "collapse");
@@ -127,7 +132,7 @@ export default function SideNav() {
       setNestedOption((prev) => (prev === "collapse" ? "expand" : "collapse"));
     }
     if (option.url !== null) {
-      handleDrawerClose();
+      // handleDrawerClose();
       // clearCurrentOptionAndCloseNestedArr()
       navigate(addBaseUrl(option.url));
     }
@@ -208,13 +213,26 @@ export default function SideNav() {
                   display: "block",
                 }}
               >
-                <Tooltip arrow placement="right" title={option.tooltip}>
+                <Tooltip
+                  arrow
+                  placement="right"
+                  title={
+                    <Typography variant="body2">{option.tooltip}</Typography>
+                  }
+                >
                   <ListItemButton
                     onClick={() => handleSideNavOptionClick(option)}
                     sx={{
                       minHeight: 48,
                       justifyContent: open ? "initial" : "center",
                       px: 2.5,
+                      background:
+                        currentOption?.url === option.url
+                          ? alpha(
+                              theme.palette.primary.main,
+                              theme.palette.action.activatedOpacity
+                            )
+                          : "",
                     }}
                   >
                     <ListItemIcon
@@ -270,9 +288,20 @@ export default function SideNav() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: "9px" }}>
+      <Box
+        component="main"
+        sx={{
+          maxWidth: `calc(100%  - 70px) !important`,
+          flexGrow: 1,
+          m: "9px",
+        }}
+      >
         <DrawerHeader />
-        <Box sx={{ mt: "-20px" }}>
+        <Box
+          sx={{
+            mt: "-20px",
+          }}
+        >
           <Outlet />
         </Box>
       </Box>

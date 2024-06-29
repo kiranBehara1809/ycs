@@ -16,8 +16,8 @@ const PageNotFound = (props) => {
       >
         <Box
           sx={{
-            height: "300px",
-            width: "400px",
+            height: "200px",
+            width: "300px",
             background: (theme) =>
               alpha(
                 theme.palette.primary.main,
@@ -25,14 +25,16 @@ const PageNotFound = (props) => {
               ),
             borderTopRightRadius: "30%",
             borderBottomLeftRadius: "30%",
-            display : "flex",
-            justifyContent : "center",
-            alignItems : 'center',
-            flexDirection : "column"
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
           }}
         >
           {PAGE_NOT_FOUND_ICON}
-          <Typography variant="h4" color={"primary.main"}>Oops..Page Not Found</Typography>
+          <Typography variant="h6" color={"primary.main"}>
+            Oops..Page Not Found
+          </Typography>
         </Box>
         {/* <img src={image} width={props?.width || 500} height={props?.height || 300} /> */}
       </Box>

@@ -1,8 +1,8 @@
 import projectLogo from "../assets/project-logo.png";
 
 const PROJECT_INFO = {
-  name: "Beta Insights",
-  shortName: "BI",
+  name: "Finanzworks",
+  shortName: "FW",
   logo: projectLogo,
   description:
     "Web-based platform for Financial Advisors and Investment Analysts (users)",
@@ -13,7 +13,7 @@ const UI = {
   fieldVariant: "standard",
 };
 
-const BASE_ROUTE_PATH = "betaInsights";
+const BASE_ROUTE_PATH = "finanzeworks";
 
 const API_ENDPOINT = "http://localhost:8888/api/v1";
 const ACCESS_TOKEN_KEY_NAME = "A_TOKEN";

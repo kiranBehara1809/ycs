@@ -17,29 +17,35 @@ import { useNavigate } from "react-router";
 import { faker } from "@faker-js/faker";
 import {
   addBaseUrl,
+  convertDate,
   showBasicToast,
   showConfirmToast,
 } from "../common/functions/function";
 import { http_get } from "../http/betaInsightsRequests";
 import ProfileDialog from "../modules/loggedInUser/profile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../store";
+import { META_DATA_ACTIONS } from "../store/slices/metaData";
 
 const Header = () => {
-  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
-  const [currentUserData, setCurrentUserData] = useState(null);
-  const navigate = useNavigate();
-  const curUserEmail = localStorage.getItem("CUR_USER_EMAIL") || "";
   const customIconStyles = {
     margin: "0px 5px",
     cursor: "pointer",
   };
-  const pageHeader = useSelector((state) => state.pageHeader.name);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { pageHeader } = useSelector((state) => state.metaData);
+  const [currentDate, setCurrentDate] = useState(null);
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+  const [currentUserData, setCurrentUserData] = useState(null);
+  const curUserEmail = localStorage.getItem("CUR_USER_EMAIL") || "";
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [randomAvatar, setRandomAvatar] = useState(faker.image.avatar());
 
   useEffect(() => {
-    // getCurrentLoggedUser();
+    setInterval(() => {
+      setCurrentDate(convertDate(new Date(), "MMM D, YYYY h:mm:ss A"));
+    }, 1000);
   }, []);
 
   const handleClick = (event) => {
@@ -81,23 +87,47 @@ const Header = () => {
 
   return (
     <>
-      <ProfileDialog
-        currentUserData={currentUserData}
-        profileDialogOpen={profileDialogOpen}
-        setProfileDialogOpen={handleProfileDialogClose}
-      />
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           flexDirection: "row",
+          alignItems: "center",
           width: "100%",
         }}
       >
         <Typography variant="h5" noWrap component="div" sx={{ pl: 2 }}>
-          {pageHeader || PROJECT_INFO.name}
+          {pageHeader}
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              pr: 2,
+              justifyContent: "flex-end",
+              maxWidth: "250px",
+            }}
+          >
+            <span
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {curUserEmail}
+            </span>
+            <span
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {currentDate}
+            </span>
+          </Box>
           {randomAvatar === null ? (
             <AccountCircleIcon
               fontSize="large"
@@ -113,21 +143,6 @@ const Header = () => {
               style={{ borderRadius: "50%", cursor: "pointer" }}
             />
           )}
-          <Tooltip title={curUserEmail}>
-            <span
-              onClick={(event) => handleClick(event)}
-              style={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                maxWidth: "180px",
-                paddingLeft: "10px",
-                cursor: "pointer",
-              }}
-            >
-              {curUserEmail}
-            </span>
-          </Tooltip>
         </Box>
       </Box>
 
@@ -144,10 +159,10 @@ const Header = () => {
           horizontal: "right",
         }}
       >
-        <List sx={{ width: "200px" }}>
+        <List sx={{ width: "250px" }}>
           <ListItem
             disablePadding
-            sx={{ display: "flex", justifyContent: "center", p: 1 }}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <img
               src={randomAvatar}
@@ -180,16 +195,23 @@ const Header = () => {
             return (
               <ListItem disablePadding key={index}>
                 <ListItemButton onClick={() => handleAccountPopverOption(x)}>
-                  <ListItemIcon disablePadding sx={{ minWidth: "30px" }}>
+                  <ListItemIcon sx={{ minWidth: "30px" }}>
                     {x.icon}
                   </ListItemIcon>
-                  <ListItemText disablePadding>{x.name}</ListItemText>
+                  <ListItemText>{x.name}</ListItemText>
                 </ListItemButton>
               </ListItem>
             );
           })}
         </List>
       </Popover>
+      {profileDialogOpen && (
+        <ProfileDialog
+          currentUserData={currentUserData}
+          profileDialogOpen={profileDialogOpen}
+          setProfileDialogOpen={true}
+        />
+      )}
     </>
   );
 };

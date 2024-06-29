@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { fontSize } from "@mui/system";
 
 const defaultGeneralSettings = {
   fontSize: 12,
@@ -31,6 +32,16 @@ export const defaultTheme = createTheme({
         asterisk: {
           color: "#FF0000",
           fontSize: "20px",
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        root: {
+          ".MuiTooltip-tooltip": {
+            fontSize: "20px !important",
+            background: "red",
+          },
         },
       },
     },
@@ -76,11 +87,6 @@ export const defaultTheme = createTheme({
           textTransform: "capitalize !important",
         },
       },
-    },
-  },
-  props: {
-    MuiTooltip: {
-      arrow: true,
     },
   },
 });

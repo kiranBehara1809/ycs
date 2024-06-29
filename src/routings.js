@@ -6,8 +6,8 @@ import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
 import About from "./modules/loggedInUser/about";
 import UnderDev from "./common/components/underDev";
-import SearchProductFundHome from "./modules/searchProductFund/searchProductFundHome";
 import DashboardHome from "./modules/dashboard/dashboardHome";
+import FundReview from "./modules/fundAnalysis/fundReview";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -36,16 +36,20 @@ export default function Routings() {
           element: <DashboardHome />,
         },
         {
+          path: "fundReview",
+          element: <FundReview />,
+        },
+        {
+          path: "marketOutlook",
+          element: <UnderDev />,
+        },
+        {
           path: "settings",
           element: <SettingsHome />,
         },
         {
           path: "about",
           element: <About />,
-        },
-        {
-          path: "searchProductOrFund",
-          element: <SearchProductFundHome />,
         },
         {
           path: "*",

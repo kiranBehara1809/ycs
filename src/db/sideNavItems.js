@@ -1,6 +1,9 @@
 import {
+  FUND_ANALYSIS_ICON,
+  FUND_INSIGHTS_ICON,
+  FUND_REVIEW_ICON,
   HOME_ICON,
-  SEARCH_PRODUCT_FUND_ICON,
+  MARKET_OUTLOOK_ICON,
   SETTINGS_ICON,
 } from "../constants/icons";
 
@@ -14,12 +17,38 @@ const SIDE_NAV_ITEMS = [
     tooltip: "Home",
   },
   {
-    name: "Search Product/Fund",
-    url: "searchProductOrFund",
+    name: "Fund Analysis",
+    url: null,
     key: "",
     openInNewTab: false,
-    icon: SEARCH_PRODUCT_FUND_ICON,
-    tooltip: "Search Product/Fund",
+    icon: FUND_ANALYSIS_ICON,
+    tooltip: "Fund Analysis",
+    children: [
+      {
+        name: "Fund Review",
+        url: "fundReview",
+        key: "",
+        openInNewTab: false,
+        icon: FUND_REVIEW_ICON,
+        tooltip: "Fund Review",
+      },
+      {
+        name: "Fund Insights",
+        url: "fundInsights",
+        key: "",
+        openInNewTab: false,
+        icon: FUND_INSIGHTS_ICON,
+        tooltip: "Fund Insights",
+      },
+    ],
+  },
+  {
+    name: "Market Outlook",
+    url: "marketOutlook",
+    key: "",
+    openInNewTab: false,
+    icon: MARKET_OUTLOOK_ICON,
+    tooltip: "Market Outlook",
   },
   {
     name: "Settings",

@@ -21,8 +21,9 @@ import { Controller, useForm } from "react-hook-form";
 import * as REGEX from "../../constants/regex";
 import { UI } from "../../constants/project";
 import projectLogo from "../../assets/project-logo.png";
-import  store from '../../store'
+import store from "../../store";
 import { PAGE_HEADER_ACTIONS } from "../../store/slices/pageHeader";
+import { META_DATA_ACTIONS } from "../../store/slices/metaData";
 
 const helperTexts = {
   userEmail: {
@@ -40,7 +41,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { control, setValue, getValues, trigger, formState, watch } = useForm({
     mode: "all",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
   });
 
   const handleSubmit = (event) => {
@@ -56,7 +57,6 @@ export default function Login() {
     }
     localStorage.setItem("CUR_USER_EMAIL", data.get("userEmail"));
     navigate(addBaseUrl("home"));
-    store.dispatch(PAGE_HEADER_ACTIONS.setPageHeader("Dashboard"))
     // handleLogin(data.get("userEmail"), data.get("password")).then((res) => {
     //   if (res) {
     //     showBasicToast("success", res.msg);

@@ -1,23 +1,23 @@
-.swal2-container{
+.swal2-container {
   z-index: 99999999 !important;
 }
 
-.reactIconsColor{
+.reactIconsColor {
   color: var(--reacIconsColor);
   font-size: x-large;
 }
-.pageNotFoundIcon{
+.pageNotFoundIcon {
   color: var(--reacIconsColor);
-  font-size: 180px;
+  font-size: 70px;
 }
-.reactIconsColorMedium{
+.reactIconsColorMedium {
   color: var(--reacIconsColor);
   font-size: medium;
 }
-.reactIconsTwoIcons{
+.reactIconsTwoIcons {
   color: var(--reacIconsColor);
   font-size: x-large;
 }
-.outPatientIcon{
+.outPatientIcon {
   transform: rotateY(180deg) !important;
 }

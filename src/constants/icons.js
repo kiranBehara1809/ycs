@@ -1,11 +1,7 @@
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import HomeIcon from "@mui/icons-material/Home";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
-import FemaleIcon from "@mui/icons-material/Female";
-import { Box } from "@mui/material";
 import { BiMaleFemale } from "react-icons/bi";
 import { IoMdFemale, IoMdMale } from "react-icons/io";
 import { FaHandshake } from "react-icons/fa";
@@ -54,16 +50,29 @@ import { FaCheckCircle } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
 import { FaPalette } from "react-icons/fa6";
 import { ImFontSize } from "react-icons/im";
-import { FaDev } from "react-icons/fa";
 import { TbInfoTriangleFilled } from "react-icons/tb";
 import { FaSearch } from "react-icons/fa";
+import { HiRectangleGroup } from "react-icons/hi2";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { VscPreview } from "react-icons/vsc";
+import { SiPagespeedinsights } from "react-icons/si";
+import { IoInformationCircleSharp } from "react-icons/io5";
 
 const SETTINGS_ICON = (
   <SettingsIcon fontSize="large" sx={{ color: "primary.main" }} />
 );
 const HOME_ICON = <HomeIcon fontSize="large" sx={{ color: "primary.main" }} />;
-const SEARCH_PRODUCT_FUND_ICON = <FaSearch className="reactIconsColor" />;
+const FUND_ANALYSIS_ICON = <FaMoneyBillTrendUp className="reactIconsColor" />;
+const TABLE_HEAD_INFO_ICON = (
+  <IoInformationCircleSharp
+    className="reactIconsColorMedium"
+    style={{ paddingTop: "3px" }}
+  />
+);
+const MARKET_OUTLOOK_ICON = <HiRectangleGroup className="reactIconsColor" />;
 const SEARCH_ICON = <FaSearch className="reactIconsColor" />;
+const FUND_REVIEW_ICON = <VscPreview className="reactIconsColor" />;
+const FUND_INSIGHTS_ICON = <SiPagespeedinsights className="reactIconsColor" />;
 
 const ADMIN_PANEL_ICON = (
   <AdminPanelSettingsIcon fontSize="large" sx={{ color: "primary.main" }} />
@@ -163,8 +172,12 @@ const FONT_SIZE_ICON = <ImFontSize className="reactIconsColor" />;
 export {
   SETTINGS_ICON,
   HOME_ICON,
+  FUND_REVIEW_ICON,
   ADMIN_PANEL_ICON,
   BLOOD_GROUP_ICON,
+  FUND_ANALYSIS_ICON,
+  MARKET_OUTLOOK_ICON,
+  FUND_INSIGHTS_ICON,
   GENDER_ICON,
   MARITAL_STATUS_ICON,
   SALUTATION_ICON,
@@ -204,6 +217,7 @@ export {
   USER_ICON,
   MONEY_STACK,
   ADD_USER_ICON,
+  TABLE_HEAD_INFO_ICON,
   GRID_ICON,
   TABLE_ICON,
   FILTER_ICON,
@@ -214,6 +228,5 @@ export {
   PALETTE_ICON,
   FONT_SIZE_ICON,
   UNDER_DEV_ICON,
-  SEARCH_PRODUCT_FUND_ICON,
-  SEARCH_ICON
+  SEARCH_ICON,
 };

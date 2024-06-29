@@ -39,7 +39,7 @@ export default function CustomHeaderWithSearchBar(props) {
       }}
     >
       {props?.headerIcon || null}
-      <Typography variant="h6" sx={{ pl: 1 }}>
+      <Typography variant="h6" sx={{ pl: 1, fontSize : '14px' }}>
         {props?.headerText || ""}
       </Typography>
       <Box sx={{ flex: 1 }}></Box>

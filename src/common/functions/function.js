@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { BASE_ROUTE_PATH } from "../../constants/project";
 import { handleLogout } from "../../http/authRequests";
+import dayjs from "dayjs";
 
 const addBaseUrl = (url) => {
   return `/${BASE_ROUTE_PATH}/${url}`;
@@ -213,7 +214,7 @@ function calculateBMI(weight, height) {
 
   // Calculate BMI
   const bmi = weight / (heightInMeters * heightInMeters);
-  
+
   let category = "";
   if (bmi < 18.5) {
     category = "Underweight";
@@ -234,6 +235,46 @@ function toTitleCase(str) {
     return match.toUpperCase();
   });
 }
+
+function convertDate(date, format, bypassInValidDate = false) {
+  if (bypassInValidDate) {
+    date = new Date();
+  }
+  if (date === "Invalid Date" || date === null || date === undefined) {
+    return "Invalid Date";
+  }
+  return dayjs(date).format(format || "DD/MM/YYYY HH:MM");
+}
+
+function intToRoman(num) {
+  if (num <= 0 || num >= 4000) {
+    console.error(
+      "Invalid number. Roman numerals are only defined for integers between 1 and 3999."
+    );
+    return num;
+  }
+
+  // Arrays of Roman numeral equivalents for different digit places
+  const thousands = ["", "M", "MM", "MMM"];
+  const hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+  const tens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+  const units = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+
+  // Extract digits at different places
+  const thousandsDigit = Math.floor(num / 1000);
+  const hundredsDigit = Math.floor((num % 1000) / 100);
+  const tensDigit = Math.floor((num % 100) / 10);
+  const unitsDigit = num % 10;
+
+  // Construct the Roman numeral by combining the corresponding digits
+  let romanNumeral =
+    thousands[thousandsDigit] +
+    hundreds[hundredsDigit] +
+    tens[tensDigit] +
+    units[unitsDigit];
+
+  return romanNumeral;
+}
 export {
   addBaseUrl,
   showBasicToast,
@@ -248,4 +289,6 @@ export {
   calculateAge,
   calculateBMI,
   toTitleCase,
+  convertDate,
+  intToRoman,
 };
