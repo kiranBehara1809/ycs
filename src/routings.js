@@ -5,9 +5,9 @@ import PageNotFound from "./common/components/pageNotFound";
 import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
 import About from "./modules/loggedInUser/about";
-import UnderDev from "./common/components/underDev";
 import DashboardHome from "./modules/dashboard/dashboardHome";
 import FundReview from "./modules/fundAnalysis/fundReview";
+import MarketOutlook from "./modules/marketOutlook/index";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -41,7 +41,7 @@ export default function Routings() {
         },
         {
           path: "marketOutlook",
-          element: <UnderDev />,
+          element: <MarketOutlook />,
         },
         {
           path: "settings",
