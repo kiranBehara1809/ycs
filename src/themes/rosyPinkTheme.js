@@ -37,8 +37,8 @@ export const rosyPinkTheme = createTheme({
     MuiTabs: {
       styleOverrides: {
         root: {
-          height: "30px",
-          minHeight: "30px",
+          height: "55px",
+          minHeight: "55px",
         },
       },
     },
@@ -47,6 +47,13 @@ export const rosyPinkTheme = createTheme({
         sx: {
           textTransform: "capitalize !important",
           height: "30px",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize !important",
         },
       },
     },

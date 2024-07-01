@@ -6,8 +6,8 @@ import Login from "./modules/auth/login";
 import SettingsHome from "./modules/settings/settingsHome";
 import About from "./modules/loggedInUser/about";
 import DashboardHome from "./modules/dashboard/dashboardHome";
-import FundReview from "./modules/fundAnalysis/fundReview";
 import MarketOutlook from "./modules/marketOutlook/index";
+import FundAnalysis from "./modules/fundAnalysis";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -36,8 +36,8 @@ export default function Routings() {
           element: <DashboardHome />,
         },
         {
-          path: "fundReview",
-          element: <FundReview />,
+          path: "fundAnalysis",
+          element: <FundAnalysis />,
         },
         {
           path: "marketOutlook",

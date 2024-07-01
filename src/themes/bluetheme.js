@@ -37,8 +37,15 @@ export const blueTheme = createTheme({
     MuiTabs: {
       styleOverrides: {
         root: {
-          height: "30px",
-          minHeight: "30px",
+          height: "55px",
+          minHeight: "55px",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize !important",
         },
       },
     },
@@ -61,11 +68,11 @@ export const blueTheme = createTheme({
         root: {
           ".Mui-selected:hover": {
             background: "#0277bd !important",
-            color : '#ffffff !important'
+            color: "#ffffff !important",
           },
           ".Mui-selected": {
             background: "#0277bd !important",
-            color : '#ffffff !important'
+            color: "#ffffff !important",
           },
         },
       },

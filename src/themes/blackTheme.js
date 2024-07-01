@@ -37,8 +37,15 @@ export const blackTheme = createTheme({
     MuiTabs: {
       styleOverrides: {
         root: {
-          height: "30px",
-          minHeight: "30px",
+          height: "55px",
+          minHeight: "55px",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize !important",
         },
       },
     },

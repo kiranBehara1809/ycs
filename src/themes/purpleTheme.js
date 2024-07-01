@@ -37,8 +37,23 @@ export const purpleTheme = createTheme({
     MuiTabs: {
       styleOverrides: {
         root: {
-          height: "30px",
-          minHeight: "30px",
+          height: "55px",
+          minHeight: "55px",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize !important",
+          fontSize: "14px",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize !important",
         },
       },
     },
@@ -61,11 +76,11 @@ export const purpleTheme = createTheme({
         root: {
           ".Mui-selected:hover": {
             background: "#660066 !important",
-            color : '#ffffff !important'
+            color: "#ffffff !important",
           },
           ".Mui-selected": {
             background: "#660066 !important",
-            color : '#ffffff !important'
+            color: "#ffffff !important",
           },
         },
       },

@@ -132,7 +132,7 @@ export default function SideNav() {
       setNestedOption((prev) => (prev === "collapse" ? "expand" : "collapse"));
     }
     if (option.url !== null) {
-      // handleDrawerClose();
+      handleDrawerClose();
       // clearCurrentOptionAndCloseNestedArr()
       navigate(addBaseUrl(option.url));
     }
