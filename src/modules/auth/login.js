@@ -56,7 +56,7 @@ export default function Login() {
       return;
     }
     localStorage.setItem("CUR_USER_EMAIL", data.get("userEmail"));
-    navigate(addBaseUrl("fundReview"));
+    navigate(addBaseUrl("fundAnalysis"));
     // handleLogin(data.get("userEmail"), data.get("password")).then((res) => {
     //   if (res) {
     //     showBasicToast("success", res.msg);

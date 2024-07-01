@@ -18,6 +18,7 @@ import { useTheme } from "@mui/system";
 import { useEffect, useMemo, useState } from "react";
 import { TABLE_HEAD_INFO_ICON } from "../../constants/icons";
 // import Pagination from "./customPagination";
+import { GoDotFill } from "react-icons/go";
 
 const DEFAULT_TABLE_LIMIT = 10;
 
@@ -98,6 +99,27 @@ const CustomTable = (props) => {
         >
           <Table stickyHeader size="small">
             <TableHead>
+              {props.columnGroups?.length > 0 &&
+                props.columnGroups?.map((x, i) => {
+                  return (
+                    <StyledTableCell
+                      align="center"
+                      colSpan={x.colSpan}
+                      key={i}
+                      sx={{
+                        ...x.sx,
+                        fontWeight: "bold",
+                        color: `${theme.palette.primary.main} !important`,
+                        background: alpha(
+                          theme.palette.primary.main,
+                          theme.palette.action.activatedOpacity
+                        ),
+                      }}
+                    >
+                      {x.id}
+                    </StyledTableCell>
+                  );
+                })}
               <TableRow>
                 {props?.columns?.map((column) => (
                   <Tooltip
@@ -116,6 +138,7 @@ const CustomTable = (props) => {
                   >
                     <StyledTableCell
                       sx={{
+                        ...column.sx,
                         minWidth: column.minWidth,
                         fontWeight: "bold",
                         color: `${theme.palette.primary.main} !important`,
@@ -149,17 +172,15 @@ const CustomTable = (props) => {
                         <StyledTableCell
                           key={`${index}_${colIndex}`}
                           style={{
-                            maxWidth: `${column.maxWidth}px`,
+                            maxWidth: `${column.minWidth}px`,
                             whiteSpace: "nowrap",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
                           }}
-                          //   sx={{
-                          //     background: alpha(
-                          //       theme.palette.primary.main,
-                          //       theme.palette.action.activatedOpacity
-                          //     ),
-                          //   }}
+                          sx={{
+                            background:
+                              `${row[`${column.id}_bg`]} !important` ?? "",
+                          }}
                         >
                           {value}
                         </StyledTableCell>
