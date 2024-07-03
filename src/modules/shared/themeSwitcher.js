@@ -12,12 +12,12 @@ const ThemeSwitcher = () => {
     {
       themeName: "defaultTheme",
       hoverColor: "#d9733f",
-      selected: true,
+      selected: false,
     },
     {
       themeName: "blueTheme",
       hoverColor: "#0277bd",
-      selected: false,
+      selected: true,
     },
     {
       themeName: "purpleTheme",

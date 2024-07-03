@@ -23,10 +23,10 @@ import {
   dateCalendarClasses,
   datePickerToolbarClasses,
 } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { faker } from "@faker-js/faker";
 import { useForm, Controller } from "react-hook-form";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
   AMC_LIST,
   ENDED_DROPDOWN_LIST,
@@ -464,14 +464,16 @@ const FundReview = () => {
             headerText={"LLM Query Input"}
             headerIcon={USER_ICON}
           />
-          <Typography variant="h6" sx={{fontSize : '13px', pt:0.5}}>What is Birla fund NAV (input1)?</Typography>
-          <Typography variant="h6" sx={{fontSize : '13px', pt:0.5}}>
+          <Typography variant="h6" sx={{ fontSize: "13px", pt: 0.5 }}>
+            What is Birla fund NAV (input1)?
+          </Typography>
+          <Typography variant="h6" sx={{ fontSize: "13px", pt: 0.5 }}>
             What is holdings of Birla Equity Fund (input2)?
           </Typography>
-          <Typography variant="h6" sx={{fontSize : '13px', pt:0.5}}>
+          <Typography variant="h6" sx={{ fontSize: "13px", pt: 0.5 }}>
             Any market news impacting Birl Equity Fund (input3)
           </Typography>
-          <Box sx={{display : "flex", justifyContent : "flex-end"}}>
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Button variant="contained">Run</Button>
           </Box>
         </Box>

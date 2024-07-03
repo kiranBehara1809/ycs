@@ -8,6 +8,13 @@ import About from "./modules/loggedInUser/about";
 import DashboardHome from "./modules/dashboard/dashboardHome";
 import MarketOutlook from "./modules/marketOutlook/index";
 import FundAnalysis from "./modules/fundAnalysis";
+import Tasks from "./modules/tasks";
+import Users from "./modules/users";
+import Mobiles from "./modules/mobiles";
+import AutoMobiles from "./modules/autoMobiles";
+import UnderDev from "./common/components/underDev";
+import CustomHeaderWithSearchBar from "./common/components/customHeaderWithSearchBar";
+import { GAME_ICON, LIFESTYLE_ICON, TRIPS_ICON } from "./constants/icons";
 
 export default function Routings() {
   const routes = useRoutes([
@@ -36,12 +43,61 @@ export default function Routings() {
           element: <DashboardHome />,
         },
         {
-          path: "fundAnalysis",
-          element: <FundAnalysis />,
+          path: "tasks",
+          element: <Tasks />,
         },
         {
-          path: "marketOutlook",
-          element: <MarketOutlook />,
+          path: "employees",
+          element: <Users />,
+        },
+        {
+          path: "mobiles",
+          element: <Mobiles />,
+        },
+        {
+          path: "automobiles",
+          element: <AutoMobiles />,
+        },
+        {
+          path: "lifestyle",
+          element: (
+            <>
+              <CustomHeaderWithSearchBar
+                hideSearchBar
+                headerText={"Lifestyle Channel Updates"}
+                headerIcon={LIFESTYLE_ICON}
+              />
+              <UnderDev />
+            </>
+          ),
+        },
+        {
+          path: "gaming",
+          element: (
+            <>
+              <CustomHeaderWithSearchBar
+                hideSearchBar
+                headerText={"Gaming Channel Updates"}
+                headerIcon={GAME_ICON}
+              />
+              <UnderDev />
+            </>
+          ),
+        },
+        {
+          path: "trips",
+          element: (
+            <>
+              <CustomHeaderWithSearchBar
+                hideSearchBar
+                headerText={
+                  "Internation & Domestic Trips related to Work & its expenses"
+                }
+                headerIcon={TRIPS_ICON}
+              />
+              <UnderDev />
+            </>
+          ),
         },
         {
           path: "settings",

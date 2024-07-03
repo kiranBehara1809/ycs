@@ -8,7 +8,7 @@ export const blueTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#0277bd",
+      main: "#384ca3",
     },
     secondary: {
       main: "#e64a19",

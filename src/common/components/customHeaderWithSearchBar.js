@@ -43,6 +43,7 @@ export default function CustomHeaderWithSearchBar(props) {
         {props?.headerText || ""}
       </Typography>
       <Box sx={{ flex: 1 }}></Box>
+      {props.hasOwnProperty("html") && props.html}
       {!hideSearchBar && (
         <>
           <Divider sx={{ height: 30, m: 0.5 }} orientation="vertical" />

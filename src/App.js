@@ -14,21 +14,21 @@ import { greyTheme } from "./themes/greyTheme";
 import { defaultTheme } from "./themes/defaultTheme";
 import { sunBurstOrange } from "./themes/sunburstOrange";
 import { purpleTheme } from "./themes/purpleTheme";
-import { PROJECT_INFO } from "./constants/project";
+import { PROJECT_INFO, UI } from "./constants/project";
 import { useSelector } from "react-redux";
 
 function App() {
   const currentUser = useSelector((state) => state.currentUser.currentUser);
-  const [ct, setCt] = useState(currentUser?.theme || defaultTheme);
+  const [ct, setCt] = useState(currentUser?.theme || blueTheme);
   useEffect(() => {
     const root = document.documentElement;
     document.title = PROJECT_INFO.name;
     if (currentUser === null) {
       root.style.setProperty(
         "--reacIconsColor",
-        defaultTheme.palette.primary.main
+        blueTheme.palette.primary.main
       );
-      setCt(defaultTheme);
+      setCt(blueTheme);
     }
     if (currentUser?.theme === "greenTheme") {
       root.style.setProperty(
@@ -96,7 +96,7 @@ function App() {
   }, [currentUser]);
   return (
     <>
-      <ThemeProvider theme={ct || defaultTheme}>
+      <ThemeProvider theme={ct || blueTheme}>
         <CssBaseline />
         <BrowserRouter basename="/">
           <HelmetProvider>

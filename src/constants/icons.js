@@ -57,11 +57,27 @@ import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { VscPreview } from "react-icons/vsc";
 import { SiPagespeedinsights } from "react-icons/si";
 import { IoInformationCircleSharp } from "react-icons/io5";
+import { FaMobileAlt } from "react-icons/fa";
+import { MdLaptopMac } from "react-icons/md";
+import { FaCar } from "react-icons/fa";
+import { FaPersonRays } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa6";
+import { IoGameController } from "react-icons/io5";
+import { MdWorkspacesFilled } from "react-icons/md";
+import { MdFlight } from "react-icons/md";
 
 const SETTINGS_ICON = (
   <SettingsIcon fontSize="large" sx={{ color: "primary.main" }} />
 );
 const HOME_ICON = <HomeIcon fontSize="large" sx={{ color: "primary.main" }} />;
+const MOBILE_ICON = <FaMobileAlt className="reactIconsColor" />;
+const LAPTOP_ICON = <MdLaptopMac className="reactIconsColor" />;
+const YOUTUBE_ICON = <FaYoutube className="reactIconsColor_yt" />;
+const GAME_ICON = <IoGameController className="reactIconsColor" />;
+const TRIPS_ICON = <MdFlight className="reactIconsColor" />;
+const TASKS_ICON = <MdWorkspacesFilled className="reactIconsColor" />;
+const LIFESTYLE_ICON = <FaPersonRays className="reactIconsColor" />;
+const CAR_ICON = <FaCar className="reactIconsColor" />;
 const FUND_ANALYSIS_ICON = <FaMoneyBillTrendUp className="reactIconsColor" />;
 const TABLE_HEAD_INFO_ICON = (
   <IoInformationCircleSharp
@@ -163,6 +179,9 @@ const FILTER_ICON = <TbFilterSearch className="reactIconsColor" />;
 const VIEW_ICON = <IoIosEye className="reactIconsColor" />;
 const EDIT_ICON = <IoPencil className="reactIconsColor" />;
 const CIRCLE_CHECK_ICON = <FaCheckCircle className="reactIconsColor" />;
+const CIRCLE_CHECK_SMALL_ICON = (
+  <FaCheckCircle className="reactIconsColorXSmall" />
+);
 const ADD_VITALS_ICON = <MdAssignmentAdd className="reactIconsColor" />;
 const PALETTE_ICON = <FaPalette className="reactIconsColor" />;
 const FONT_SIZE_ICON = <ImFontSize className="reactIconsColor" />;
@@ -172,6 +191,8 @@ const FONT_SIZE_ICON = <ImFontSize className="reactIconsColor" />;
 export {
   SETTINGS_ICON,
   HOME_ICON,
+  LIFESTYLE_ICON,
+  CAR_ICON,
   FUND_REVIEW_ICON,
   ADMIN_PANEL_ICON,
   BLOOD_GROUP_ICON,
@@ -179,6 +200,8 @@ export {
   MARKET_OUTLOOK_ICON,
   FUND_INSIGHTS_ICON,
   GENDER_ICON,
+  CIRCLE_CHECK_SMALL_ICON,
+  TASKS_ICON,
   MARITAL_STATUS_ICON,
   SALUTATION_ICON,
   CLOSE_ICON,
@@ -195,6 +218,7 @@ export {
   APPOINTMENT_CALENDAR_ICON,
   LANGUAGE_ICON,
   CURRENCY_ICON,
+  MOBILE_ICON,
   CITY_ICON,
   STATE_ICON,
   COUNTRY_ICON,
@@ -214,19 +238,23 @@ export {
   ACC_POPOVER_SETTINGS_ICON,
   PAGE_NOT_FOUND_ICON,
   ADDRESS_ICON,
+  YOUTUBE_ICON,
   USER_ICON,
   MONEY_STACK,
   ADD_USER_ICON,
+  LAPTOP_ICON,
   TABLE_HEAD_INFO_ICON,
   GRID_ICON,
   TABLE_ICON,
   FILTER_ICON,
   VIEW_ICON,
+  GAME_ICON,
   EDIT_ICON,
   CIRCLE_CHECK_ICON,
   ADD_VITALS_ICON,
   PALETTE_ICON,
   FONT_SIZE_ICON,
   UNDER_DEV_ICON,
+  TRIPS_ICON,
   SEARCH_ICON,
 };

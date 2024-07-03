@@ -1,5 +1,4 @@
 import { Box, Typography, alpha } from "@mui/material";
-import image from "../../assets/404.png";
 import { UNDER_DEV_ICON } from "../../constants/icons";
 
 const UnderDev = (props) => {

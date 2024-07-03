@@ -21,9 +21,6 @@ import { Controller, useForm } from "react-hook-form";
 import * as REGEX from "../../constants/regex";
 import { UI } from "../../constants/project";
 import projectLogo from "../../assets/project-logo.png";
-import store from "../../store";
-import { PAGE_HEADER_ACTIONS } from "../../store/slices/pageHeader";
-import { META_DATA_ACTIONS } from "../../store/slices/metaData";
 
 const helperTexts = {
   userEmail: {
@@ -56,7 +53,7 @@ export default function Login() {
       return;
     }
     localStorage.setItem("CUR_USER_EMAIL", data.get("userEmail"));
-    navigate(addBaseUrl("fundAnalysis"));
+    navigate(addBaseUrl("home"));
     // handleLogin(data.get("userEmail"), data.get("password")).then((res) => {
     //   if (res) {
     //     showBasicToast("success", res.msg);
@@ -127,7 +124,7 @@ export default function Login() {
             <Controller
               control={control}
               name="userEmail"
-              defaultValue=""
+              defaultValue="testingemail@gmail.com"
               rules={{
                 required: true,
                 pattern: REGEX.TEXT_REGEX.EMAIL,
@@ -172,7 +169,7 @@ export default function Login() {
               <Controller
                 control={control}
                 name="password"
-                defaultValue=""
+                defaultValue="testingPassword"
                 rules={{
                   required: true,
                   maxLength: 30,

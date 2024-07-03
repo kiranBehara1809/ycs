@@ -1,5 +1,5 @@
 {
-  "name": "management",
+  "name": "ycs",
   "version": "0.1.0",
   "homepage": "https://kiranbehara1809.github.io",
   "private": true,
@@ -32,6 +32,8 @@
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-device-detect": "^2.2.2",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.3",
     "react-hook-form": "^7.52.0",

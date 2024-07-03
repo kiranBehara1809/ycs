@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -50,11 +51,25 @@ const CustomTable = (props) => {
     setPage(0);
   };
 
-  const handleLinkClick = (colId, value, record) => {
-    props.clickedColumn(colId, value, record);
-  };
+  // const handleLinkClick = (colId, value, record) => {
+  //   props.clickedColumn(colId, value, record);
+  // };
 
-  const formatValue = (value) => {
+  const formatValue = (value, column, record) => {
+    if (column.hasOwnProperty("link") && column.link === true) {
+      return (
+        <span
+          style={{
+            color: "var(--reacIconsColor)",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+          onClick={() => props.handleLinkClick(value, column, record)}
+        >
+          {value}
+        </span>
+      );
+    }
     return value;
   };
 
@@ -182,7 +197,8 @@ const CustomTable = (props) => {
                               `${row[`${column.id}_bg`]} !important` ?? "",
                           }}
                         >
-                          {value}
+                          {/* {value} */}
+                          {formatValue(value, column, row)}
                         </StyledTableCell>
                       );
                     })}
